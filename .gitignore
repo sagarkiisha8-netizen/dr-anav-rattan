@@ -13,21 +13,16 @@
 # testing
 /coverage
 
-# next.js & production builds
+# next.js
 /.next/
-.next
 /out/
-/build
-/dist
 
-# credentials & keys
+# production
+/build
+
+# misc
+.DS_Store
 *.pem
-*.key
-*secret*
-*credential*
-*.env
-.env*
-!.env.example
 
 # debug
 npm-debug.log*
@@ -50,3 +45,6 @@ next-env.d.ts
 # runtime data
 data/submissions.json
 data/admin.json
+
+# inner clones/folders
+dr-anav-rattan/
