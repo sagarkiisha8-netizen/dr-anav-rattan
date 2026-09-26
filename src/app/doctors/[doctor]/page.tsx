@@ -180,30 +180,34 @@ export default async function DoctorProfilePage({ params }: Props) {
       </section>
 
       {/* Main Profile Body */}
-      <section style={{ padding: "5rem 2rem", background: "#fff" }}>
+      <section style={{ padding: "4.5rem 1.25rem", background: "#fff" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "48px", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "40px", alignItems: "start" }}>
             
             {/* Left Photo & Key Facts Box */}
-            <div>
-              <div style={{ 
-                borderRadius: "16px", 
-                overflow: "hidden", 
-                boxShadow: "0 12px 36px rgba(18,54,83,0.12)", 
-                border: "1px solid rgba(18,54,83,0.1)",
-                position: "relative",
-                height: "440px",
-                background: "var(--cream)",
-                marginBottom: "24px"
-              }}>
-                <Image 
-                  src={doctor.image} 
-                  alt={doctor.name} 
-                  fill 
-                  style={{ objectFit: "cover", objectPosition: "top center" }} 
-                  priority
-                />
-              </div>
+            <div style={{ width: "100%" }}>
+              {doctor.image && doctor.image.trim() !== "" && (
+                <div className="doctor-card-image" style={{ 
+                  borderRadius: "16px", 
+                  overflow: "hidden", 
+                  boxShadow: "0 12px 36px rgba(18,54,83,0.12)", 
+                  border: "1px solid rgba(18,54,83,0.1)",
+                  position: "relative",
+                  width: "100%",
+                  aspectRatio: "4 / 5",
+                  background: "var(--cream)",
+                  marginBottom: "24px"
+                }}>
+                  <Image 
+                    src={doctor.image} 
+                    alt={doctor.name} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 480px"
+                    style={{ objectFit: "cover", objectPosition: "center top" }} 
+                    priority
+                  />
+                </div>
+              )}
 
               {/* Consultation Card */}
               <div style={{ background: "var(--cream)", padding: "28px", borderRadius: "14px", border: "1px solid rgba(18,54,83,0.08)" }}>
