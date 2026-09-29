@@ -135,16 +135,30 @@ export default function HomeServicesSection({ services }: HomeServicesSectionPro
     >
       <div className="services-container">
         {/* Section Header */}
-        <div className="sec-header services-sec-header">
-          <div className="sec-eyebrow services-eyebrow">
-            <span className="eyebrow-line" />
-            Clinical Specialities
-            <span className="eyebrow-line" />
+        <div className="services-sec-header" style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto 3.5rem" }}>
+          <div 
+            className="services-eyebrow"
+            style={{
+              fontSize: "11.5px",
+              fontWeight: 600,
+              letterSpacing: "2.5px",
+              textTransform: "uppercase",
+              color: "var(--gold)",
+              marginBottom: "0.85rem",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px"
+            }}
+          >
+            <span style={{ display: "inline-block", width: "20px", height: "1.5px", background: "var(--gold)" }} />
+            CLINICAL SPECIALITIES
+            <span style={{ display: "inline-block", width: "20px", height: "1.5px", background: "var(--gold)" }} />
           </div>
-          <h2 className="sec-title services-main-title">
-            Specialized <em className="gold-em">ENT</em> Treatments
+          <h2 className="services-main-title">
+            Specialized <em className="gold-em" style={{ color: "var(--gold)", fontStyle: "italic" }}>ENT</em> Treatments
           </h2>
-          <p className="sec-sub services-sub-title">
+          <p className="services-sub-title">
             State-of-the-art diagnostic and surgical care across all ear, nose, throat, head and neck subspecialties.
           </p>
         </div>
