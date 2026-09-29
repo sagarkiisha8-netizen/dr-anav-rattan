@@ -107,9 +107,9 @@ export default function Navbar() {
           Mon-Sat: {contact.morningOpd?.split("(")[0]?.trim() || "10 AM-2 PM"} &amp; {contact.eveningOpd?.split("(")[0]?.trim() || "5:30-8 PM"} &nbsp;·&nbsp; Sun: {contact.sundayOpd?.split("(")[0]?.trim() || "11 AM-1 PM"}
         </div>
         <div className="top-bar-right">
-          <a href={`tel:${phoneClean}`} aria-label="Call Clinic">📞 {contact.phone || "0172-2610806"}</a>
-          <a href={`https://wa.me/${whatsappClean}`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬 WhatsApp</a>
-          <a href={`mailto:${contact.email || "rattananav@gmail.com"}`} aria-label="Send Email">✉ {contact.email || "rattananav@gmail.com"}</a>
+          <a href={`tel:${phoneClean}`} aria-label="Call Clinic" className="top-bar-link top-bar-phone">📞 {contact.phone || "0172-2610806"}</a>
+          <a href={`https://wa.me/${whatsappClean}`} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="top-bar-link top-bar-wa">💬 WhatsApp</a>
+          <a href={`mailto:${contact.email || "rattananav@gmail.com"}`} aria-label="Send Email" className="top-bar-link top-bar-email">✉ {contact.email || "rattananav@gmail.com"}</a>
         </div>
       </div>
 
@@ -248,31 +248,33 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {/* Mobile-only CTA buttons inside drawer */}
-          <li className="mob-cta-item">
-            <Link
-              href="/book-appointment"
-              className="btn-gold"
-              style={{ width: "100%", justifyContent: "center", marginBottom: "10px" }}
-              onClick={handleNavClick("/book-appointment")}
-            >
-              Book Appointment
-            </Link>
-            <a
-              href="https://wa.me/919988004806"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-cta whatsapp"
-              style={{ width: "100%", justifyContent: "center", margin: 0, padding: "11px 0" }}
-              onClick={closeMenu}
-            >
-              Chat on WhatsApp
-            </a>
-          </li>
+          {/* Mobile-only CTA buttons inside drawer (rendered ONLY when mobile drawer is open) */}
+          {isMobileMenuOpen && (
+            <li className="mob-cta-item">
+              <Link
+                href="/book-appointment"
+                className="btn-gold"
+                style={{ width: "100%", justifyContent: "center", marginBottom: "10px" }}
+                onClick={handleNavClick("/book-appointment")}
+              >
+                Book Appointment
+              </Link>
+              <a
+                href="https://wa.me/919988004806"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-cta whatsapp"
+                style={{ width: "100%", justifyContent: "center", margin: 0, padding: "11px 0" }}
+                onClick={closeMenu}
+              >
+                Chat on WhatsApp
+              </a>
+            </li>
+          )}
         </ul>
 
         {/* Right CTA Actions */}
-        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <div className="nav-right-actions" style={{ display: "flex", gap: "8px", alignItems: "center" }}>
           <a
             className="nav-cta whatsapp desktop-only-cta"
             href="https://wa.me/919988004806"
