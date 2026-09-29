@@ -24,11 +24,14 @@ export default function Navbar() {
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-open");
     } else {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     };
   }, [isMobileMenuOpen]);
 
@@ -39,6 +42,7 @@ export default function Navbar() {
       setIsMobileMenuOpen(false);
       setIsServicesMobileOpen(false);
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     }
   }, [pathname]);
 
@@ -64,6 +68,16 @@ export default function Navbar() {
     e.preventDefault();
     e.stopPropagation();
     setIsServicesMobileOpen((prev) => !prev);
+  };
+
+  const handleServicesRowClick = (e: React.MouseEvent) => {
+    if (typeof window !== "undefined" && window.innerWidth <= 980) {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsServicesMobileOpen((prev) => !prev);
+    } else {
+      handleNavClick("/services")(e);
+    }
   };
 
   const [contact, setContact] = useState<{
@@ -97,7 +111,8 @@ export default function Navbar() {
   const whatsappClean = (contact.whatsapp || "+91 9988004806").replace(/[^0-9]/g, "");
 
   return (
-    <header className={`site-header${isScrolled ? " header-scrolled" : ""}`}>
+    <>
+      <header className={`site-header${isScrolled ? " header-scrolled" : ""}`}>
       {/* Top Gradient Rule */}
       <div style={{ height: "3px", background: "linear-gradient(90deg,var(--navy) 0%,var(--gold) 30%,var(--gold2) 60%,var(--gold) 80%,var(--navy) 100%)" }} />
 
@@ -143,11 +158,11 @@ export default function Navbar() {
 
           {/* Services with Desktop Dropdown & Mobile Accordion */}
           <li className={`nav-services-item${isServicesMobileOpen ? " services-open-mobile" : ""}`}>
-            <div className="services-link-wrap">
+            <div className="services-link-wrap" onClick={handleServicesRowClick}>
               <Link
                 href="/services"
                 className={pathname?.startsWith("/services") ? "active" : ""}
-                onClick={handleNavClick("/services")}
+                onClick={handleServicesRowClick}
               >
                 Services
               </Link>
@@ -303,13 +318,14 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
-
-      {/* Mobile overlay backdrop */}
-      <div
-        className={`mobile-nav-backdrop${isMobileMenuOpen ? " backdrop-visible" : ""}`}
-        onClick={closeMenu}
-        aria-hidden="true"
-      />
     </header>
+
+    {/* Mobile overlay backdrop behind header and drawer */}
+    <div
+      className={`mobile-nav-backdrop${isMobileMenuOpen ? " backdrop-visible" : ""}`}
+      onClick={closeMenu}
+      aria-hidden="true"
+    />
+  </>
   );
 }

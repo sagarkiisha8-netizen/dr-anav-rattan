@@ -67,9 +67,27 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
 .mob-toggle.mob-toggle-open .bar2{opacity:0;width:0}
 .mob-toggle.mob-toggle-open .bar3{transform:translateY(-7px) rotate(-45deg)}
 
-/* Mobile backdrop overlay */
-.mobile-nav-backdrop{display:none;position:fixed;inset:0;background:rgba(7,23,38,0.45);z-index:9997;backdrop-filter:blur(2px);opacity:0;transition:opacity 0.28s ease}
-.mobile-nav-backdrop.backdrop-visible{display:block;opacity:1}
+/* Mobile backdrop overlay - strictly behind header (z-index 9998) and menu drawer */
+.mobile-nav-backdrop {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(7, 23, 38, 0.45) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 9997 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s !important;
+}
+.mobile-nav-backdrop.backdrop-visible {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transition: opacity 0.25s ease, visibility 0s linear 0s !important;
+}
 
 /* ANIMATIONS & TRANSITIONS */
 .page-transition{animation:pageFadeIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards}
@@ -119,59 +137,165 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
   /* Fixed header spacer on mobile: top-bar(~31px) + gradient(3px) + nav(64px) = 98px */
   .nav-header-spacer{height:98px}
 
-  /* Main navbar on mobile */
-  nav:not(.admin-nav){height:64px;padding:0 1.25rem}
-  .nav-logo{font-size:19px}
-  .mob-toggle{display:flex}
+  /* Main navbar on mobile: crisp white background, no filters, no blur */
+  nav:not(.admin-nav){
+    height:64px;
+    padding:0 1.25rem;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    filter:none !important;
+    background:#ffffff !important;
+    z-index:9998;
+  }
+  .nav-logo{font-size:19px;filter:none !important}
+  .mob-toggle{
+    display:flex;
+    position:relative;
+    z-index:9999;
+    min-width:44px;
+    min-height:44px;
+    pointer-events:auto !important;
+    touch-action:manipulation;
+  }
   .desktop-only-cta{display:none !important}
 
-  /* Mobile CTA item inside drawer */
-  .mob-cta-item{display:block !important;padding:1.2rem 1.5rem 1rem;border-top:1px solid var(--border);margin-top:0.5rem}
-
-  /* Full-height slide-down navigation drawer */
+  /* Full-height crisp solid navigation drawer: NO blur, NO dim, 100% sharp */
   .nav-links{
     display:flex;
     position:fixed;
     top:98px;
     left:0;
     right:0;
+    height:calc(100vh - 98px);
     height:calc(100dvh - 98px);
     max-height:calc(100dvh - 98px);
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
-    background:#ffffff;
+    background:#ffffff !important;
     flex-direction:column;
-    padding:0.5rem 0 2rem;
+    padding:0.5rem 0 2.5rem;
     border-top:2px solid var(--gold);
-    box-shadow:0 8px 24px rgba(18,54,83,0.12);
-    z-index:9999;
+    box-shadow:0 12px 32px rgba(18,54,83,0.15);
+    z-index:9998 !important;
     opacity:0;
     visibility:hidden;
-    transform:translateY(-10px);
-    pointer-events:none;
-    transition:opacity 0.26s ease, transform 0.26s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0.26s;
+    pointer-events:none !important;
+    filter:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    transition:opacity 0.22s ease, visibility 0s linear 0.22s;
   }
   .nav-links.open{
-    opacity:1;
-    visibility:visible;
-    transform:translateY(0);
-    pointer-events:auto;
-    transition:opacity 0.26s ease, transform 0.26s cubic-bezier(0.16,1,0.3,1), visibility 0s linear 0s;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    filter:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    transition:opacity 0.22s ease, visibility 0s linear 0s;
   }
-  .nav-links > li{width:100%}
-  .nav-links > li > a, .services-link-wrap > a{padding:13px 1.75rem;font-size:15px;width:100%;color:var(--navy)}
-  .nav-links > li > a::after, .services-link-wrap > a::after{display:none}
-  .nav-links > li > a.active{color:var(--gold);font-weight:600}
-  .services-link-wrap{display:flex;justify-content:space-between;align-items:center;padding-right:1.25rem}
-  .services-dropdown-toggle{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--navy);cursor:pointer;flex-shrink:0;transition:background 0.2s, border-color 0.2s;}
-  .services-dropdown-toggle:hover{background:var(--cream)}
-  .chevron-icon{transition:transform 0.26s cubic-bezier(0.16,1,0.3,1)}
+  .nav-links > li{width:100%;filter:none !important}
+
+  /* All mobile links: high contrast, sharp text, immediate 1st tap response */
+  .nav-links > li > a, .services-link-wrap > a{
+    padding:13px 1.75rem;
+    font-size:15px;
+    width:100%;
+    color:var(--navy) !important;
+    opacity:1 !important;
+    filter:none !important;
+    pointer-events:auto !important;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:rgba(201,162,74,0.15);
+  }
+  .nav-links > li > a::after, .services-link-wrap > a::after{display:none !important}
+  .nav-links > li > a.active{color:var(--gold) !important;font-weight:600}
+
+  /* Services accordion row: entire row triggers accordion on mobile */
+  .services-link-wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-right:1.25rem;
+    cursor:pointer;
+    touch-action:manipulation;
+    user-select:none;
+    pointer-events:auto !important;
+  }
+  .services-link-wrap > a{flex:1;cursor:pointer}
+  .services-dropdown-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:44px;
+    min-height:44px;
+    border-radius:6px;
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--navy);
+    cursor:pointer;
+    flex-shrink:0;
+    touch-action:manipulation;
+    pointer-events:auto !important;
+    transition:background 0.2s, border-color 0.2s;
+  }
+  .services-dropdown-toggle:hover, .services-dropdown-toggle:active{background:var(--cream)}
+  .chevron-icon{transition:transform 0.26s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
   .services-dropdown-toggle.toggle-open .chevron-icon{transform:rotate(180deg)}
-  .nav-links .dropdown{display:block;position:static;box-shadow:none;border:none;border-radius:0;padding:0;background:var(--off);max-height:0;overflow:hidden;animation:none;transition:max-height 0.3s cubic-bezier(0.16,1,0.3,1);}
-  .nav-links .dropdown.dropdown-mobile-show{max-height:600px;padding:4px 0 8px;}
-  .nav-links .dropdown a{padding:9px 1.75rem 9px 2.5rem;font-size:13.5px;color:var(--muted);border-left:none;}
-  .nav-links .dropdown a:hover{color:var(--navy);background:rgba(201,162,74,0.06)}
-  .nav-links .dropdown a.sub-active{color:var(--navy);font-weight:600;border-left:none;padding-left:2.5rem}
+
+  /* Services submenu */
+  .nav-links .dropdown{
+    display:block;
+    position:static;
+    box-shadow:none;
+    border:none;
+    border-radius:0;
+    padding:0;
+    background:var(--off) !important;
+    filter:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    max-height:0;
+    overflow:hidden;
+    animation:none;
+    transition:max-height 0.3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-links .dropdown.dropdown-mobile-show{max-height:650px;padding:4px 0 8px}
+  .nav-links .dropdown a{
+    display:block;
+    padding:10px 1.75rem 10px 2.5rem;
+    font-size:13.5px;
+    color:var(--muted) !important;
+    border-left:none;
+    opacity:1 !important;
+    filter:none !important;
+    pointer-events:auto !important;
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:rgba(201,162,74,0.15);
+  }
+  .nav-links .dropdown a:hover, .nav-links .dropdown a:active{
+    color:var(--navy) !important;
+    background:rgba(201,162,74,0.08);
+  }
+  .nav-links .dropdown a.sub-active{color:var(--navy) !important;font-weight:600;border-left:none;padding-left:2.5rem}
+
+  /* Mobile CTA items inside drawer: sharp, high contrast, immediate 1st tap response */
+  .mob-cta-item{
+    display:block !important;
+    padding:1.25rem 1.5rem 1rem;
+    border-top:1px solid var(--border);
+    margin-top:0.5rem;
+    opacity:1 !important;
+    filter:none !important;
+    pointer-events:auto !important;
+  }
+  .mob-cta-item .btn-gold,
+  .mob-cta-item .nav-cta{
+    opacity:1 !important;
+    filter:none !important;
+    pointer-events:auto !important;
+    touch-action:manipulation;
+  }
 }
 
 @media(max-width:360px){
@@ -1990,7 +2114,7 @@ div[id*="netlify-drawer"] {
 }
 
 /* WhatsApp floating button - hidden completely on mobile */
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .wa-float {
     display: none !important;
     visibility: hidden !important;
