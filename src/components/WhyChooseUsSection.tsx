@@ -284,9 +284,18 @@ export default function WhyChooseUsSection({ data }: WhyChooseUsProps = {}) {
                       href={item.href} 
                       className="why-action-link"
                       aria-label={`Learn more about ${item.title}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        color: "#C9A24A",
+                        textDecoration: "none",
+                        fontWeight: 600,
+                        fontSize: "13.5px",
+                      }}
                     >
                       <span>Learn more</span>
-                      <span className="why-arrow" aria-hidden="true">→</span>
+                      <span className="why-arrow" aria-hidden="true" style={{ color: "#C9A24A", display: "inline-block" }}>→</span>
                     </Link>
                   </div>
                 </div>
@@ -367,7 +376,8 @@ export default function WhyChooseUsSection({ data }: WhyChooseUsProps = {}) {
         }
 
         .why-card:hover .why-arrow {
-          transform: translateX(5px);
+          transform: translateX(4px);
+          color: #a8812c;
         }
 
         /* CARD TOP */
@@ -447,29 +457,35 @@ export default function WhyChooseUsSection({ data }: WhyChooseUsProps = {}) {
         .why-action-link {
           font-size: 13.5px;
           font-weight: 600;
-          color: var(--gold, #C9A24A);
+          color: #C9A24A;
           text-decoration: none;
           display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           cursor: pointer;
-          transition: color 0.2s ease, transform 0.2s ease;
-          padding: 4px 6px;
+          transition: transform 0.25s ease, color 0.2s ease;
           border-radius: 4px;
         }
 
         .why-action-link:hover {
-          color: var(--navy, #123653);
+          color: #a8812c;
+          transform: translateX(4px);
         }
 
         .why-action-link:focus-visible {
-          outline: 2px solid var(--gold);
+          outline: 2px solid #C9A24A;
           outline-offset: 2px;
         }
 
         .why-arrow {
           display: inline-block;
-          transition: transform 0.25s ease;
+          color: #C9A24A;
+          transition: transform 0.25s ease, color 0.2s ease;
+        }
+
+        .why-action-link:hover .why-arrow {
+          transform: translateX(4px);
+          color: #a8812c;
         }
 
         /* ========================================================

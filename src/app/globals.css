@@ -1928,6 +1928,36 @@ section > .affil-grid { max-width: 1200px; margin-left: auto; margin-right: auto
   color: #a8812c !important;
 }
 
+/* Premium Gold & Navy Learn More Link Button */
+.why-action-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #C9A24A !important;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.why-action-link:hover {
+  color: #a8812c !important;
+  transform: translateX(4px) !important;
+}
+
+.why-arrow {
+  display: inline-block !important;
+  transition: transform 0.25s ease, color 0.2s ease !important;
+  color: #C9A24A !important;
+}
+
+.why-action-link:hover .why-arrow,
+.why-card:hover .why-arrow {
+  transform: translateX(4px) !important;
+  color: #a8812c !important;
+}
+
 /* Bottom "View All Services" Button */
 .services-bottom-link-row {
   text-align: center;
