@@ -1256,9 +1256,8 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(13,43,69,0.12); }
 @media(max-width:767px) {
   .wa-float { display:none !important; }
 }
-}
 
-/* DOCTOR CARDS â€” portrait layout */
+/* DOCTOR CARDS - portrait layout */
 .doctors-layout { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
 .doctor-card { background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
 .doctor-photo { position:relative; }
