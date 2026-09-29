@@ -30,7 +30,7 @@ section[id], div[id]{scroll-margin-top:120px}
 /* Spacer that pushes page content below the fixed header */
 /* Desktop: top-bar(~37px) + gradient(3px) + nav(68px) = ~108px */
 .nav-header-spacer{height:108px}
-.nav-right-actions{display:flex;gap:8px;align-items:center}
+.nav-right-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .mob-cta-item{display:none !important}
 .book-btn-full{display:inline}
 .book-btn-short{display:none}
@@ -129,7 +129,10 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
   *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}
 }
 
-/* RESPONSIVE NAV MENU */
+/* ============================================================
+   RESPONSIVE NAV MENU — Mobile-first granular breakpoints
+   Tested: 320 / 340 / 360 / 375 / 390 / 412px
+   ============================================================ */
 @media(max-width:980px){
   /* Top Bar on Mobile: minimal, single clean line, no awkward wrapping, email hidden */
   .top-bar{padding:7px 1rem;font-size:11.5px;justify-content:center}
@@ -150,18 +153,37 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     background:#ffffff !important;
     z-index:9998;
     border-bottom:1px solid var(--border);
+    /* Prevent children from overflowing header */
+    overflow:visible;
   }
-  .nav-logo{font-size:18px;filter:none !important;white-space:nowrap}
+
+  /* Logo: flex-shrink so it yields space to right-side controls */
+  .nav-logo{
+    font-size:17px;
+    filter:none !important;
+    white-space:nowrap;
+    flex-shrink:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:170px;
+  }
+
+  /* Right-side controls: grouped, never shrink, always visible */
   .nav-right-actions{
     display:flex !important;
     align-items:center;
     gap:7px;
+    flex-shrink:0;
+    min-width:0;
   }
+
+  /* WhatsApp CTA button */
   .nav-header-wa{
     display:inline-flex !important;
     align-items:center;
     gap:5px;
-    padding:7px 11px;
+    padding:7px 10px;
     font-size:12px;
     margin-left:0 !important;
     border-radius:5px;
@@ -172,11 +194,14 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     white-space:nowrap;
     touch-action:manipulation;
     pointer-events:auto !important;
+    flex-shrink:0;
   }
+
+  /* Book Appointment CTA button */
   .nav-header-book{
     display:inline-flex !important;
     align-items:center;
-    padding:7px 12px;
+    padding:7px 11px;
     font-size:12px;
     font-weight:600;
     margin-left:0 !important;
@@ -188,17 +213,23 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     white-space:nowrap;
     touch-action:manipulation;
     pointer-events:auto !important;
+    flex-shrink:0;
   }
   .nav-header-book .book-btn-full{display:none !important}
   .nav-header-book .book-btn-short{display:inline !important}
+
+  /* Hamburger */
   .mob-toggle{
     display:flex;
     position:relative;
     z-index:9999;
     min-width:38px;
     min-height:38px;
+    width:38px;
+    height:38px;
     pointer-events:auto !important;
     touch-action:manipulation;
+    flex-shrink:0;
   }
   .desktop-only-cta{display:none !important}
 
@@ -332,33 +363,61 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
   .nav-links .dropdown a.sub-active{color:var(--navy) !important;font-weight:600;border-left:none;padding-left:2.25rem}
 }
 
-@media(max-width:380px){
-  .top-bar{padding:5px 0.5rem;font-size:10.5px}
-  .top-bar-wa{display:none !important}
-  nav:not(.admin-nav){padding:0 0.5rem}
-  .nav-logo{font-size:15px;letter-spacing:-0.2px}
-  .nav-right-actions{gap:4px}
-  .nav-header-wa{
-    padding:6px !important;
-    width:32px;
-    height:32px;
-    justify-content:center;
-  }
-  .nav-header-wa .wa-btn-text{display:none !important}
-  .nav-header-book{
-    padding:6px 8px !important;
-    font-size:11px !important;
-  }
-  .mob-toggle{
-    width:34px;
-    height:34px;
-    padding:4px;
-  }
+/* ── 390px: Slightly compact — still comfortable ── */
+@media(max-width:390px){
+  nav:not(.admin-nav){padding:0 0.75rem}
+  .nav-logo{font-size:15.5px;max-width:148px}
+  .nav-right-actions{gap:5px}
+  .nav-header-wa{padding:6px 9px;font-size:11.5px}
+  .nav-header-book{padding:6px 9px;font-size:11.5px}
+  .mob-toggle{min-width:36px;min-height:36px;width:36px;height:36px}
 }
 
-@media(max-width:330px){
-  .nav-logo{font-size:13.5px}
-  .nav-header-book{padding:5px 6px !important;font-size:10.5px !important}
+/* ── 360px: Reduce further, keep text on WA & Book ── */
+@media(max-width:360px){
+  .top-bar{padding:5px 0.75rem;font-size:10.5px}
+  .top-bar-wa{display:none !important}
+  nav:not(.admin-nav){padding:0 0.6rem}
+  .nav-logo{font-size:14.5px;max-width:130px;letter-spacing:-0.2px}
+  .nav-right-actions{gap:4px}
+  .nav-header-wa{padding:6px 8px;font-size:11px;gap:4px}
+  .nav-header-book{padding:6px 8px;font-size:11px}
+  .mob-toggle{min-width:34px;min-height:34px;width:34px;height:34px;padding:4px}
+}
+
+/* ── 340px: Icon-only WhatsApp, ultra-compact Book ── */
+@media(max-width:340px){
+  nav:not(.admin-nav){padding:0 0.5rem}
+  .nav-logo{font-size:13.5px;max-width:115px}
+  .nav-right-actions{gap:3px}
+  /* WA icon-only */
+  .nav-header-wa{
+    padding:6px !important;
+    width:30px;
+    height:30px;
+    justify-content:center;
+    gap:0;
+    border-radius:50%;
+  }
+  .nav-header-wa .wa-btn-text{display:none !important}
+  /* Book ultra-compact */
+  .nav-header-book{padding:5px 7px !important;font-size:10.5px !important}
+  .mob-toggle{min-width:32px;min-height:32px;width:32px;height:32px;padding:4px}
+}
+
+/* ── 320px: Absolute minimum — icons only ── */
+@media(max-width:320px){
+  nav:not(.admin-nav){padding:0 0.4rem}
+  .nav-logo{font-size:12.5px;max-width:100px;letter-spacing:-0.3px}
+  .nav-right-actions{gap:3px}
+  .nav-header-wa{
+    padding:5px !important;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+  }
+  .nav-header-book{padding:5px 6px !important;font-size:10px !important}
+  .mob-toggle{min-width:30px;min-height:30px;width:30px;height:30px}
 }
 
 /* HERO TWO-COLUMN: ADAPTIVE LAYOUT FOR WITH IMAGE vs TEXT ONLY */
