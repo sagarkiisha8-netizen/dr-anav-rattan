@@ -25,12 +25,15 @@ section[id], div[id]{scroll-margin-top:120px}
 /* SITE HEADER — Fixed so it stays visible on scroll regardless of overflow-x:clip on parents */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:9998;transition:box-shadow 0.3s ease}
 .site-header.header-scrolled{box-shadow:0 4px 24px rgba(18,54,83,0.12)}
+.site-header.mobile-menu-active{background:#ffffff !important;box-shadow:0 4px 20px rgba(18,54,83,0.15) !important}
 
 /* Spacer that pushes page content below the fixed header */
 /* Desktop: top-bar(~37px) + gradient(3px) + nav(68px) = ~108px */
 .nav-header-spacer{height:108px}
 .nav-right-actions{display:flex;gap:8px;align-items:center}
 .mob-cta-item{display:none !important}
+.book-btn-full{display:inline}
+.book-btn-short{display:none}
 
 /* NAV — inside fixed header, no need for own position */
 nav:not(.admin-nav){position:relative;z-index:1;background:rgba(248,247,243,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:68px;transition:background 0.3s ease,border-color 0.3s ease}
@@ -140,20 +143,60 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
   /* Main navbar on mobile: crisp white background, no filters, no blur */
   nav:not(.admin-nav){
     height:64px;
-    padding:0 1.25rem;
+    padding:0 1rem;
     backdrop-filter:none !important;
     -webkit-backdrop-filter:none !important;
     filter:none !important;
     background:#ffffff !important;
     z-index:9998;
+    border-bottom:1px solid var(--border);
   }
-  .nav-logo{font-size:19px;filter:none !important}
+  .nav-logo{font-size:18px;filter:none !important;white-space:nowrap}
+  .nav-right-actions{
+    display:flex !important;
+    align-items:center;
+    gap:7px;
+  }
+  .nav-header-wa{
+    display:inline-flex !important;
+    align-items:center;
+    gap:5px;
+    padding:7px 11px;
+    font-size:12px;
+    margin-left:0 !important;
+    border-radius:5px;
+    background:#25d366 !important;
+    color:#fff !important;
+    text-decoration:none !important;
+    box-shadow:0 2px 8px rgba(37,211,102,0.25);
+    white-space:nowrap;
+    touch-action:manipulation;
+    pointer-events:auto !important;
+  }
+  .nav-header-book{
+    display:inline-flex !important;
+    align-items:center;
+    padding:7px 12px;
+    font-size:12px;
+    font-weight:600;
+    margin-left:0 !important;
+    background:var(--gold) !important;
+    color:#0b2438 !important;
+    border-radius:5px;
+    text-decoration:none !important;
+    box-shadow:0 2px 8px rgba(201,162,74,0.3);
+    white-space:nowrap;
+    touch-action:manipulation;
+    pointer-events:auto !important;
+  }
+  .nav-header-book .book-btn-full{display:none !important}
+  .nav-header-book .book-btn-short{display:inline !important}
   .mob-toggle{
     display:flex;
     position:relative;
     z-index:9999;
-    min-width:44px;
-    min-height:44px;
+    min-width:38px;
+    min-height:38px;
     pointer-events:auto !important;
     touch-action:manipulation;
   }
@@ -166,16 +209,19 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     top:98px;
     left:0;
     right:0;
+    bottom:0;
+    width:100%;
     height:calc(100vh - 98px);
     height:calc(100dvh - 98px);
-    max-height:calc(100dvh - 98px);
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
     background:#ffffff !important;
     flex-direction:column;
-    padding:0.5rem 0 2.5rem;
-    border-top:2px solid var(--gold);
-    box-shadow:0 12px 32px rgba(18,54,83,0.15);
+    padding:0.4rem 0 2rem;
+    margin-top:-1px;
+    border-top:1px solid var(--border);
+    box-shadow:0 16px 36px rgba(18,54,83,0.2);
     z-index:9998 !important;
     opacity:0;
     visibility:hidden;
@@ -198,7 +244,7 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
 
   /* All mobile links: high contrast, sharp text, immediate 1st tap response */
   .nav-links > li > a, .services-link-wrap > a{
-    padding:13px 1.75rem;
+    padding:12px 1.5rem;
     font-size:15px;
     width:100%;
     color:var(--navy) !important;
@@ -227,8 +273,8 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     display:flex;
     align-items:center;
     justify-content:center;
-    min-width:44px;
-    min-height:44px;
+    min-width:40px;
+    min-height:40px;
     border-radius:6px;
     border:1px solid var(--border);
     background:transparent;
@@ -243,7 +289,7 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
   .chevron-icon{transition:transform 0.26s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
   .services-dropdown-toggle.toggle-open .chevron-icon{transform:rotate(180deg)}
 
-  /* Services submenu */
+  /* Services submenu: compact spacing to keep drawer clean & accessible */
   .nav-links .dropdown{
     display:block;
     position:static;
@@ -251,7 +297,7 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     border:none;
     border-radius:0;
     padding:0;
-    background:var(--off) !important;
+    background:#f7f6f2 !important;
     filter:none !important;
     backdrop-filter:none !important;
     -webkit-backdrop-filter:none !important;
@@ -260,11 +306,17 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     animation:none;
     transition:max-height 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-  .nav-links .dropdown.dropdown-mobile-show{max-height:650px;padding:4px 0 8px}
+  .nav-links .dropdown.dropdown-mobile-show{
+    max-height:550px;
+    padding:3px 0 6px;
+    border-top:1px solid rgba(18,54,83,0.06);
+    border-bottom:1px solid rgba(18,54,83,0.06);
+  }
   .nav-links .dropdown a{
     display:block;
-    padding:10px 1.75rem 10px 2.5rem;
-    font-size:13.5px;
+    padding:7.5px 1.5rem 7.5px 2.25rem;
+    font-size:13px;
+    line-height:1.35;
     color:var(--muted) !important;
     border-left:none;
     opacity:1 !important;
@@ -277,31 +329,36 @@ nav:not(.admin-nav).nav-scrolled{background:rgba(255,255,255,0.98);border-bottom
     color:var(--navy) !important;
     background:rgba(201,162,74,0.08);
   }
-  .nav-links .dropdown a.sub-active{color:var(--navy) !important;font-weight:600;border-left:none;padding-left:2.5rem}
+  .nav-links .dropdown a.sub-active{color:var(--navy) !important;font-weight:600;border-left:none;padding-left:2.25rem}
+}
 
-  /* Mobile CTA items inside drawer: sharp, high contrast, immediate 1st tap response */
-  .mob-cta-item{
-    display:block !important;
-    padding:1.25rem 1.5rem 1rem;
-    border-top:1px solid var(--border);
-    margin-top:0.5rem;
-    opacity:1 !important;
-    filter:none !important;
-    pointer-events:auto !important;
+@media(max-width:380px){
+  .top-bar{padding:5px 0.5rem;font-size:10.5px}
+  .top-bar-wa{display:none !important}
+  nav:not(.admin-nav){padding:0 0.5rem}
+  .nav-logo{font-size:15px;letter-spacing:-0.2px}
+  .nav-right-actions{gap:4px}
+  .nav-header-wa{
+    padding:6px !important;
+    width:32px;
+    height:32px;
+    justify-content:center;
   }
-  .mob-cta-item .btn-gold,
-  .mob-cta-item .nav-cta{
-    opacity:1 !important;
-    filter:none !important;
-    pointer-events:auto !important;
-    touch-action:manipulation;
+  .nav-header-wa .wa-btn-text{display:none !important}
+  .nav-header-book{
+    padding:6px 8px !important;
+    font-size:11px !important;
+  }
+  .mob-toggle{
+    width:34px;
+    height:34px;
+    padding:4px;
   }
 }
 
-@media(max-width:360px){
-  .top-bar{padding:6px 0.5rem;font-size:11px}
-  .top-bar-wa{display:none !important}
-  .top-bar-right{gap:0}
+@media(max-width:330px){
+  .nav-logo{font-size:13.5px}
+  .nav-header-book{padding:5px 6px !important;font-size:10.5px !important}
 }
 
 /* HERO TWO-COLUMN: ADAPTIVE LAYOUT FOR WITH IMAGE vs TEXT ONLY */
@@ -2097,10 +2154,12 @@ footer.site-footer {
 [data-netlify-deploy-preview],
 iframe#netlify-drawer,
 #netlify-drawer,
+iframe[src*="netlify"],
 div[class*="netlify-drawer"],
 div[class*="netlify-badge"],
 div[id*="netlify-badge"],
-div[id*="netlify-drawer"] {
+div[id*="netlify-drawer"],
+netlify-drawer {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -2110,7 +2169,18 @@ div[id*="netlify-drawer"] {
   margin: 0 !important;
   padding: 0 !important;
   position: absolute !important;
-  z-index: -9999 !important;
+  z-index: -99999 !important;
+}
+
+body.menu-open [class*="netlify"],
+body.menu-open [id*="netlify"],
+body.menu-open iframe,
+body.menu-open netlify-drawer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -99999 !important;
 }
 
 /* WhatsApp floating button - hidden completely on mobile */
