@@ -49,6 +49,7 @@ export default function SiteLayoutWrapper({
   return (
     <>
       <Navbar />
+      <div className="nav-header-spacer" aria-hidden="true" />
       {children}
       <WhatsAppCTA />
       <Footer />
