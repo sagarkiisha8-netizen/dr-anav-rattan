@@ -564,7 +564,8 @@ export const defaultSiteContent: SiteContent = {
       bio: "Subspecialist in Advanced Otology, Cochlear Implantation, Lateral Skull Base Surgery, and Neuro-otology. Trained at Seth G.S. Medical College & KEM Hospital, Mumbai and PGIMER Chandigarh.",
       detailedBio: [
         "Dr. Anav Rattan is an accomplished ENT surgeon with subspecialised training in Otology, Auditory Implantation, and Skull Base Surgery.",
-        "He completed his MS (ENT) from the prestigious Seth G.S. Medical College & KEM Hospital, Mumbai, followed by a demanding Senior Residency at PGIMER, Chandigarh. He holds the prestigious Diplomate of National Board (DNB)."
+        "He completed his MS (ENT) from the prestigious Seth G.S. Medical College & KEM Hospital, Mumbai, followed by a demanding Senior Residency at PGIMER, Chandigarh. He holds the prestigious Diplomate of National Board (DNB) and Membership of the National Academy of Medical Sciences (MNAMS).",
+        "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
       ],
       experience: "Institutional Specialised Practice",
       image: "/images/dr-anav-rattan-1.jpeg",
