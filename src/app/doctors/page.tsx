@@ -61,18 +61,28 @@ export default async function DoctorsPage() {
             >
               <div>
                 {doctor.image && doctor.image.trim() !== "" ? (
-                  <div className="doctor-card-image" style={{ width: "100%", height: "400px", position: "relative", overflow: "hidden", background: "var(--navy)", flexShrink: 0 }}>
+                  <div
+                    className="doctor-card-image"
+                    style={{
+                      width: "100%",
+                      height: "400px",
+                      position: "relative",
+                      overflow: "hidden",
+                      background: "var(--navy)",
+                      flexShrink: 0,
+                    }}
+                  >
                     <Image
                       src={doctor.image}
                       alt={doctor.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 540px"
-                      style={{ 
+                      style={{
                         objectFit: "cover",
                         objectPosition:
                           (doctor.slug && doctor.slug.includes("ganesh")) || (doctor.name && doctor.name.toLowerCase().includes("ganesh"))
                             ? "center 12%"
-                            : "center 5%",
+                            : "center 30%",
                       }}
                       priority
                     />
