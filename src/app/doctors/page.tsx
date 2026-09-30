@@ -72,12 +72,7 @@ export default async function DoctorsPage() {
                         objectPosition:
                           (doctor.slug && doctor.slug.includes("ganesh")) || (doctor.name && doctor.name.toLowerCase().includes("ganesh"))
                             ? "center 12%"
-                            : "center 28%",
-                        transform:
-                          (doctor.slug && doctor.slug.includes("anav")) || (doctor.name && doctor.name.toLowerCase().includes("anav"))
-                            ? "scale(0.92)"
-                            : "scale(1)",
-                        transformOrigin: "center 28%",
+                            : "center 5%",
                       }}
                       priority
                     />
