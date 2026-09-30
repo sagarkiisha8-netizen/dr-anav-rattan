@@ -617,7 +617,7 @@ export const defaultSiteContent: SiteContent = {
         desc1: "Dr. Anav Rattan completed comprehensive specialized training in the Cochlear Implant Programme at Seth G.S. Medical College & KEM Hospital, Mumbai.",
         desc2: "This institutional program covers all facets of pediatric and adult auditory implantation: high-resolution temporal bone radiological planning, posterior tympanotomy round-window surgical access, intraoperative neural telemetry, and multi-disciplinary rehabilitation handoff.",
         focusTitle: "Certification Details:",
-        focusDesc: "Round Window Insertion & Intraoperative Neural Response Telemetry Verification at KEM Hospital Mumbai.",
+        focusDesc: "Round Window Insertion & Intraoperative Neural Response Telemetry at KEM Hospital Mumbai.",
         image: "/images/cochlear-implant-programme-certificate-kem-hospital-mumbai-12.jpeg",
         caption: "Certified Cochlear Implant Training — KEM Hospital Mumbai",
         subType: "Certification"
