@@ -805,10 +805,42 @@ const defaultMediaItems: MediaItem[] = [
   { id: "m-18", url: "/images/dr-g-d-rattan-nameplate-5.jpeg", filename: "dr-g-d-rattan-nameplate-5.jpeg", title: "Senior Consultant Chambers Nameplate", alt: "Consultation chamber entrance for Senior ENT Surgeon Dr. Ganesh Dutt Rattan", sizeBytes: 36127, mimeType: "image/jpeg", uploadedAt: new Date().toISOString() },
 ];
 
+function cleanDoctorBio(bioList?: string[]): string[] {
+  if (!Array.isArray(bioList)) return [];
+  return bioList.map((p) => {
+    return p
+      .replace(
+        /,?\s*including the Indian Academy of Otolaryngology\s*[-–—]\s*Head\s*&?\s*Neck Surgery \(IAOHNS\)\.?\s*His clinical practice integrates high-magnification microsurgery, rigid endoscopy, and vestibular diagnostic protocols\.?/gi,
+        ""
+      )
+      .replace(
+        /Dr\. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums[^\n"]*/gi,
+        "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
+      )
+      .trim();
+  });
+}
+
 // Content Accessors
 export async function getSiteContent(): Promise<SiteContent> {
   const data = await readPersistentJson<SiteContent>("site-content", CONTENT_FILE, BUNDLED_CONTENT_FILE);
   if (data) {
+    let modified = false;
+    if (Array.isArray(data.doctors)) {
+      data.doctors = data.doctors.map((doc) => {
+        if (doc.slug === "anav-rattan" && Array.isArray(doc.detailedBio)) {
+          const cleaned = cleanDoctorBio(doc.detailedBio);
+          if (JSON.stringify(cleaned) !== JSON.stringify(doc.detailedBio)) {
+            modified = true;
+            return { ...doc, detailedBio: cleaned };
+          }
+        }
+        return doc;
+      });
+    }
+    if (modified) {
+      writePersistentJson("site-content", data, CONTENT_FILE).catch(() => {});
+    }
     memoryContent = data;
     return data;
   }

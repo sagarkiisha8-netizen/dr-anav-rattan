@@ -147,6 +147,22 @@ export default async function DoctorProfilePage({ params }: Props) {
     notFound();
   }
 
+  // Ensure detailedBio terminates cleanly at scientific forums without deprecated trailing phrases
+  if (doctor.detailedBio && Array.isArray(doctor.detailedBio)) {
+    doctor.detailedBio = doctor.detailedBio.map((p) =>
+      p
+        .replace(
+          /,?\s*including the Indian Academy of Otolaryngology\s*[-–—]\s*Head\s*&?\s*Neck Surgery \(IAOHNS\)\.?\s*His clinical practice integrates high-magnification microsurgery, rigid endoscopy, and vestibular diagnostic protocols\.?/gi,
+          ""
+        )
+        .replace(
+          /Dr\. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums[^\n"]*/gi,
+          "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
+        )
+        .trim()
+    );
+  }
+
   return (
     <main>
       {/* Profile Header */}
