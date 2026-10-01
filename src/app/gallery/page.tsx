@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Clinical & Surgical Gallery | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Explore photographs of Dr. Rattan ENT Clinic, advanced diagnostic endoscopy suites, otomicroscopy setups, and surgical milestones from PGI Chandigarh and KEM Hospital Mumbai.",
+  alternates: {
+    canonical: "/gallery",
+  },
 };
 
 export default async function GalleryPage() {

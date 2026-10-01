@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Book an Appointment | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Schedule an outpatient consultation with Dr. Ganesh Dutt Rattan and Dr. Anav Rattan at our Sector 33C clinic in Chandigarh.",
+  alternates: {
+    canonical: "/book-appointment",
+  },
 };
 
 export default async function BookAppointmentPage() {

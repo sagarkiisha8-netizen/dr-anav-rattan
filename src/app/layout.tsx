@@ -18,10 +18,13 @@ const dmSerifDisplay = DM_Serif_Display({
   variable: "--serif",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://drrattanentclinic.com";
+import { SITE_URL } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Dr. Rattan ENT Clinic — Best ENT Specialists in Chandigarh",
     template: "%s | Dr. Rattan ENT Clinic",
@@ -47,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "Dr. Rattan ENT Clinic",
     title: "Dr. Rattan ENT Clinic — Best ENT Specialists in Chandigarh",
     description: "Expert ENT care in Chandigarh by PGI-trained surgeons. Comprehensive ear, nose, throat, hearing, voice, and skull base care.",

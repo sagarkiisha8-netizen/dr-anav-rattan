@@ -1,11 +1,13 @@
+import { SITE_URL, absoluteUrl } from "@/lib/siteConfig";
+
 export default function JsonLd() {
   const clinicSchema = {
     "@context": "https://schema.org",
     "@type": "MedicalClinic",
     "name": "Dr. Rattan ENT Clinic",
-    "image": "https://drrattanentclinic.com/images/dr-rattan-and-dr-anav-rattan-hero2.png",
-    "@id": "https://drrattanentclinic.com",
-    "url": "https://drrattanentclinic.com",
+    "image": absoluteUrl("/images/dr-rattan-and-dr-anav-rattan-hero2.png"),
+    "@id": SITE_URL,
+    "url": SITE_URL,
     "telephone": "+91-172-2610806",
     "priceRange": "$$",
     "address": {

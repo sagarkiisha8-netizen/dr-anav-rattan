@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "About Us | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Founded by Dr. Ganesh Dutt Rattan, Dr. Rattan ENT Clinic brings over 35 years of PGI-trained surgical excellence and compassionate medical care to Chandigarh and North India.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default async function AboutPage() {

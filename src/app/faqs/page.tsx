@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Frequently Asked Questions | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Find clear, medically sound answers to common inquiries regarding ear microsurgery, sinus endoscopy, vertigo treatments, pediatric conditions, and clinic consultations.",
+  alternates: {
+    canonical: "/faqs",
+  },
 };
 
 export default async function FAQsPage() {

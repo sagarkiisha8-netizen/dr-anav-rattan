@@ -4,6 +4,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Dr. Rattan ENT Clinic",
   description: "Privacy policy and patient data confidentiality guidelines at Dr. Rattan ENT Clinic, Chandigarh.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

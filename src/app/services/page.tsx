@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Clinical Services | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Comprehensive ENT diagnostic, medical, and advanced surgical interventions in Chandigarh. Specialising in Otology, Hearing Restoration, Cochlear Implants, Endoscopic Sinus Surgery, Voice Disorders, and Skull Base Surgery.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export const dynamic = "force-dynamic";

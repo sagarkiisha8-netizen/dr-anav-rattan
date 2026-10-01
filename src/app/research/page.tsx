@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "Academic Research & Conferences | Dr. Rattan ENT Clinic Chandigarh",
   description:
     "Explore the clinical research, national conference presentations (IAOHNS), and temporal bone surgery training of our ENT surgeons.",
+  alternates: {
+    canonical: "/research",
+  },
 };
 
 export default async function ResearchPage() {
