@@ -5,6 +5,109 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import './admin.css';
 
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+}
+
+class AdminErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Admin panel caught an unexpected error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          padding: '32px',
+          margin: '24px auto',
+          maxWidth: '800px',
+          background: '#ffffff',
+          borderRadius: '16px',
+          border: '1px solid #fecaca',
+          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.05)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              background: '#fee2e2',
+              color: '#dc2626',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '20px',
+              fontWeight: 700
+            }}>
+              ⚠
+            </div>
+            <div>
+              <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#991b1b', margin: 0 }}>
+                This Admin Section Encountered a Render Issue
+              </h2>
+              <p style={{ fontSize: '13px', color: '#64748b', margin: '4px 0 0' }}>
+                The rest of the Admin Control Center is running normally.
+              </p>
+            </div>
+          </div>
+
+          <div style={{
+            background: '#f8fafc',
+            border: '1px solid #e2e8f0',
+            borderRadius: '8px',
+            padding: '14px',
+            fontFamily: 'monospace',
+            fontSize: '12px',
+            color: '#b91c1c',
+            marginBottom: '20px',
+            overflowX: 'auto',
+            whiteSpace: 'pre-wrap',
+            wordBreak: 'break-word',
+          }}>
+            {this.state.error?.message || 'Unknown runtime rendering exception'}
+          </div>
+
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button
+              onClick={() => {
+                this.setState({ hasError: false, error: null });
+                window.location.reload();
+              }}
+              className="admin-btn admin-btn-primary"
+              style={{ fontSize: '13px', padding: '8px 16px' }}
+            >
+              🔄 Reload Section
+            </button>
+            <a
+              href="/admin/dashboard"
+              className="admin-btn admin-btn-secondary"
+              style={{ fontSize: '13px', padding: '8px 16px', textDecoration: 'none' }}
+            >
+              ← Return to Dashboard
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 interface NavItem {
   name: string;
   href: string;
@@ -379,7 +482,9 @@ export default function AdminShell({
         </header>
 
         <main className="admin-content">
-          {children}
+          <AdminErrorBoundary>
+            {children}
+          </AdminErrorBoundary>
         </main>
       </div>
     </div>

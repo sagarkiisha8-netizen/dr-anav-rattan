@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth";
-import { getSiteContent, updateSiteContent } from "@/lib/db";
+import { getSiteContent, updateSiteContent, deepMergeSiteContent } from "@/lib/db";
 import { SiteContent } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -40,16 +40,7 @@ export async function PUT(request: Request) {
     }
 
     const current = await getSiteContent();
-
-    // Deep merge or section update
-    const updatedContent: SiteContent = {
-      ...current,
-      ...body,
-      home: body.home ? { ...current.home, ...body.home } : current.home,
-      about: body.about ? { ...current.about, ...body.about } : current.about,
-      contact: body.contact ? { ...current.contact, ...body.contact } : current.contact,
-      research: body.research ? { ...current.research, ...body.research } : current.research,
-    };
+    const updatedContent = deepMergeSiteContent(current, body);
 
     const result = await updateSiteContent(updatedContent);
 

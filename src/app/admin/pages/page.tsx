@@ -347,11 +347,15 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.hero.badge}
+                    value={content.home?.hero?.badge ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: { ...content.home, hero: { ...content.home.hero, badge: e.target.value } },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const hero = prev.home?.hero || ({} as any);
+                        return {
+                          ...prev,
+                          home: { ...prev.home, hero: { ...hero, badge: e.target.value } },
+                        };
                       })
                     }
                   />
@@ -361,11 +365,15 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.hero.highlightedTitle}
+                    value={content.home?.hero?.highlightedTitle ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: { ...content.home, hero: { ...content.home.hero, highlightedTitle: e.target.value } },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const hero = prev.home?.hero || ({} as any);
+                        return {
+                          ...prev,
+                          home: { ...prev.home, hero: { ...hero, highlightedTitle: e.target.value } },
+                        };
                       })
                     }
                   />
@@ -378,11 +386,15 @@ export default function AdminPagesEditor() {
                   type="text"
                   className="admin-input"
                   style={{ fontWeight: 700, fontSize: '15px' }}
-                  value={content.home.hero.title}
+                  value={content.home?.hero?.title ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      home: { ...content.home, hero: { ...content.home.hero, title: e.target.value } },
+                    setContent((prev) => {
+                      if (!prev) return prev;
+                      const hero = prev.home?.hero || ({} as any);
+                      return {
+                        ...prev,
+                        home: { ...prev.home, hero: { ...hero, title: e.target.value } },
+                      };
                     })
                   }
                 />
@@ -393,11 +405,15 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.home.hero.description}
+                  value={content.home?.hero?.description ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      home: { ...content.home, hero: { ...content.home.hero, description: e.target.value } },
+                    setContent((prev) => {
+                      if (!prev) return prev;
+                      const hero = prev.home?.hero || ({} as any);
+                      return {
+                        ...prev,
+                        home: { ...prev.home, hero: { ...hero, description: e.target.value } },
+                      };
                     })
                   }
                 />
@@ -412,17 +428,22 @@ export default function AdminPagesEditor() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={content.home.hero.primaryButton.label}
+                      value={content.home?.hero?.primaryButton?.label ?? ''}
                       onChange={(e) =>
-                        setContent({
-                          ...content,
-                          home: {
-                            ...content.home,
-                            hero: {
-                              ...content.home.hero,
-                              primaryButton: { ...content.home.hero.primaryButton, label: e.target.value },
+                        setContent((prev) => {
+                          if (!prev) return prev;
+                          const hero = prev.home?.hero || ({} as any);
+                          const primaryButton = hero.primaryButton || { label: '', link: '/book-appointment', variant: 'primary' };
+                          return {
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              hero: {
+                                ...hero,
+                                primaryButton: { ...primaryButton, label: e.target.value },
+                              },
                             },
-                          },
+                          };
                         })
                       }
                     />
@@ -432,17 +453,22 @@ export default function AdminPagesEditor() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={content.home.hero.primaryButton.link}
+                      value={content.home?.hero?.primaryButton?.link ?? ''}
                       onChange={(e) =>
-                        setContent({
-                          ...content,
-                          home: {
-                            ...content.home,
-                            hero: {
-                              ...content.home.hero,
-                              primaryButton: { ...content.home.hero.primaryButton, link: e.target.value },
+                        setContent((prev) => {
+                          if (!prev) return prev;
+                          const hero = prev.home?.hero || ({} as any);
+                          const primaryButton = hero.primaryButton || { label: 'Book Appointment', link: '', variant: 'primary' };
+                          return {
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              hero: {
+                                ...hero,
+                                primaryButton: { ...primaryButton, link: e.target.value },
+                              },
                             },
-                          },
+                          };
                         })
                       }
                     />
@@ -456,17 +482,22 @@ export default function AdminPagesEditor() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={content.home.hero.secondaryButton.label}
+                      value={content.home?.hero?.secondaryButton?.label ?? ''}
                       onChange={(e) =>
-                        setContent({
-                          ...content,
-                          home: {
-                            ...content.home,
-                            hero: {
-                              ...content.home.hero,
-                              secondaryButton: { ...content.home.hero.secondaryButton, label: e.target.value },
+                        setContent((prev) => {
+                          if (!prev) return prev;
+                          const hero = prev.home?.hero || ({} as any);
+                          const secondaryButton = hero.secondaryButton || { label: '', link: '/services', variant: 'secondary' };
+                          return {
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              hero: {
+                                ...hero,
+                                secondaryButton: { ...secondaryButton, label: e.target.value },
+                              },
                             },
-                          },
+                          };
                         })
                       }
                     />
@@ -476,17 +507,22 @@ export default function AdminPagesEditor() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={content.home.hero.secondaryButton.link}
+                      value={content.home?.hero?.secondaryButton?.link ?? ''}
                       onChange={(e) =>
-                        setContent({
-                          ...content,
-                          home: {
-                            ...content.home,
-                            hero: {
-                              ...content.home.hero,
-                              secondaryButton: { ...content.home.hero.secondaryButton, link: e.target.value },
+                        setContent((prev) => {
+                          if (!prev) return prev;
+                          const hero = prev.home?.hero || ({} as any);
+                          const secondaryButton = hero.secondaryButton || { label: 'Explore Our Services', link: '', variant: 'secondary' };
+                          return {
+                            ...prev,
+                            home: {
+                              ...prev.home,
+                              hero: {
+                                ...hero,
+                                secondaryButton: { ...secondaryButton, link: e.target.value },
+                              },
                             },
-                          },
+                          };
                         })
                       }
                     />
@@ -499,7 +535,7 @@ export default function AdminPagesEditor() {
                 <ImageFieldControl
                   label="Hero Featured Image (Real Doctors Portrait)"
                   description="Shows Dr. Ganesh Dutt Rattan & Dr. Anav Rattan together on the navy hero background."
-                  currentUrl={content.home.hero.image}
+                  currentUrl={content.home?.hero?.image ?? ''}
                   defaultUrl="/images/dr-rattan-and-dr-anav-rattan-hero2.png"
                   defaultAlt="Dr. Ganesh Dutt Rattan & Dr. Anav Rattan - Senior ENT Specialists"
                   previewLink="/#hero"
@@ -512,9 +548,13 @@ export default function AdminPagesEditor() {
                     if (data.media) setMediaList(data.media);
                   }}
                   onChange={(newUrl) => {
-                    setContent({
-                      ...content,
-                      home: { ...content.home, hero: { ...content.home.hero, image: newUrl } },
+                    setContent((prev) => {
+                      if (!prev) return prev;
+                      const hero = prev.home?.hero || ({} as any);
+                      return {
+                        ...prev,
+                        home: { ...prev.home, hero: { ...hero, image: newUrl } },
+                      };
                     });
                   }}
                 />
@@ -532,7 +572,7 @@ export default function AdminPagesEditor() {
             </div>
             <div className="admin-section-body">
               <div className="admin-grid-4">
-                {content.home.statistics.map((stat, idx) => (
+                {(content.home?.statistics || []).map((stat, idx) => (
                   <div key={idx} style={{ background: '#f8fafc', padding: '14px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
                     <div className="admin-form-group">
                       <label className="admin-label">Stat Value</label>
@@ -542,12 +582,9 @@ export default function AdminPagesEditor() {
                         style={{ fontWeight: 800, color: '#123653', fontSize: '16px' }}
                         value={stat.number}
                         onChange={(e) => {
-                          const newStats = [...content.home.statistics];
-                          newStats[idx].number = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, statistics: newStats },
-                          });
+                          const newStats = [...(content.home?.statistics || [])];
+                          newStats[idx] = { ...newStats[idx], number: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, statistics: newStats } } : prev);
                         }}
                       />
                     </div>
@@ -558,12 +595,9 @@ export default function AdminPagesEditor() {
                         className="admin-input"
                         value={stat.label}
                         onChange={(e) => {
-                          const newStats = [...content.home.statistics];
-                          newStats[idx].label = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, statistics: newStats },
-                          });
+                          const newStats = [...(content.home?.statistics || [])];
+                          newStats[idx] = { ...newStats[idx], label: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, statistics: newStats } } : prev);
                         }}
                       />
                     </div>
@@ -588,14 +622,18 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.whyChooseUs.label}
+                    value={content.home?.whyChooseUs?.label ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: {
-                          ...content.home,
-                          whyChooseUs: { ...content.home.whyChooseUs, label: e.target.value },
-                        },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const wcu = prev.home?.whyChooseUs || ({} as any);
+                        return {
+                          ...prev,
+                          home: {
+                            ...prev.home,
+                            whyChooseUs: { ...wcu, label: e.target.value },
+                          },
+                        };
                       })
                     }
                   />
@@ -605,14 +643,18 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.whyChooseUs.title}
+                    value={content.home?.whyChooseUs?.title ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: {
-                          ...content.home,
-                          whyChooseUs: { ...content.home.whyChooseUs, title: e.target.value },
-                        },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const wcu = prev.home?.whyChooseUs || ({} as any);
+                        return {
+                          ...prev,
+                          home: {
+                            ...prev.home,
+                            whyChooseUs: { ...wcu, title: e.target.value },
+                          },
+                        };
                       })
                     }
                   />
@@ -620,7 +662,7 @@ export default function AdminPagesEditor() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {content.home.whyChooseUs.benefits.map((b, bIdx) => (
+                {(content.home?.whyChooseUs?.benefits || []).map((b, bIdx) => (
                   <div key={b.id || bIdx} style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                       <span className="admin-badge admin-badge-navy">{b.num}</span>
@@ -630,11 +672,15 @@ export default function AdminPagesEditor() {
                         style={{ fontWeight: 700 }}
                         value={b.title}
                         onChange={(e) => {
-                          const newB = [...content.home.whyChooseUs.benefits];
-                          newB[bIdx].title = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, whyChooseUs: { ...content.home.whyChooseUs, benefits: newB } },
+                          const newB = [...(content.home?.whyChooseUs?.benefits || [])];
+                          newB[bIdx] = { ...newB[bIdx], title: e.target.value };
+                          setContent((prev) => {
+                            if (!prev) return prev;
+                            const wcu = prev.home?.whyChooseUs || ({} as any);
+                            return {
+                              ...prev,
+                              home: { ...prev.home, whyChooseUs: { ...wcu, benefits: newB } },
+                            };
                           });
                         }}
                       />
@@ -644,11 +690,15 @@ export default function AdminPagesEditor() {
                       rows={2}
                       value={b.desc}
                       onChange={(e) => {
-                        const newB = [...content.home.whyChooseUs.benefits];
-                        newB[bIdx].desc = e.target.value;
-                        setContent({
-                          ...content,
-                          home: { ...content.home, whyChooseUs: { ...content.home.whyChooseUs, benefits: newB } },
+                        const newB = [...(content.home?.whyChooseUs?.benefits || [])];
+                        newB[bIdx] = { ...newB[bIdx], desc: e.target.value };
+                        setContent((prev) => {
+                          if (!prev) return prev;
+                          const wcu = prev.home?.whyChooseUs || ({} as any);
+                          return {
+                            ...prev,
+                            home: { ...prev.home, whyChooseUs: { ...wcu, benefits: newB } },
+                          };
                         });
                       }}
                     />
@@ -999,24 +1049,21 @@ export default function AdminPagesEditor() {
 
               {/* Testimonials Cards Grid */}
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#123653', marginBottom: '12px' }}>
-                Testimonial Cards ({content.home.testimonials.length})
+                Testimonial Cards ({content.home?.testimonials?.length || 0})
               </div>
               <div className="admin-grid-3">
-                {content.home.testimonials.map((t, tIdx) => (
+                {(content.home?.testimonials || []).map((t, tIdx) => (
                   <div key={t.id || tIdx} style={{ background: '#f8fafc', padding: '16px', borderRadius: '10px', border: '1px solid #e2e8f0', position: 'relative' }}>
                     <div className="admin-form-group">
                       <label className="admin-label">Patient Name</label>
                       <input
                         type="text"
                         className="admin-input"
-                        value={t.author}
+                        value={t.author || ''}
                         onChange={(e) => {
-                          const newT = [...content.home.testimonials];
-                          newT[tIdx].author = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, testimonials: newT },
-                          });
+                          const newT = [...(content.home?.testimonials || [])];
+                          newT[tIdx] = { ...newT[tIdx], author: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                         }}
                       />
                     </div>
@@ -1030,12 +1077,9 @@ export default function AdminPagesEditor() {
                           value={t.initials || ''}
                           placeholder="e.g. AS"
                           onChange={(e) => {
-                            const newT = [...content.home.testimonials];
-                            newT[tIdx].initials = e.target.value;
-                            setContent({
-                              ...content,
-                              home: { ...content.home, testimonials: newT },
-                            });
+                            const newT = [...(content.home?.testimonials || [])];
+                            newT[tIdx] = { ...newT[tIdx], initials: e.target.value };
+                            setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                           }}
                         />
                       </div>
@@ -1045,12 +1089,9 @@ export default function AdminPagesEditor() {
                           className="admin-input"
                           value={t.stars || 5}
                           onChange={(e) => {
-                            const newT = [...content.home.testimonials];
-                            newT[tIdx].stars = parseInt(e.target.value) || 5;
-                            setContent({
-                              ...content,
-                              home: { ...content.home, testimonials: newT },
-                            });
+                            const newT = [...(content.home?.testimonials || [])];
+                            newT[tIdx] = { ...newT[tIdx], stars: parseInt(e.target.value) || 5 };
+                            setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                           }}
                         >
                           <option value="5">★★★★★ (5 Stars)</option>
@@ -1067,12 +1108,9 @@ export default function AdminPagesEditor() {
                         placeholder="e.g. Chronic Sinus Care"
                         value={t.condition || ''}
                         onChange={(e) => {
-                          const newT = [...content.home.testimonials];
-                          newT[tIdx].condition = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, testimonials: newT },
-                          });
+                          const newT = [...(content.home?.testimonials || [])];
+                          newT[tIdx] = { ...newT[tIdx], condition: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                         }}
                       />
                     </div>
@@ -1083,12 +1121,9 @@ export default function AdminPagesEditor() {
                         className="admin-input"
                         value={t.location || ''}
                         onChange={(e) => {
-                          const newT = [...content.home.testimonials];
-                          newT[tIdx].location = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, testimonials: newT },
-                          });
+                          const newT = [...(content.home?.testimonials || [])];
+                          newT[tIdx] = { ...newT[tIdx], location: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                         }}
                       />
                     </div>
@@ -1097,14 +1132,11 @@ export default function AdminPagesEditor() {
                       <textarea
                         className="admin-textarea"
                         rows={3}
-                        value={t.text}
+                        value={t.text || ''}
                         onChange={(e) => {
-                          const newT = [...content.home.testimonials];
-                          newT[tIdx].text = e.target.value;
-                          setContent({
-                            ...content,
-                            home: { ...content.home, testimonials: newT },
-                          });
+                          const newT = [...(content.home?.testimonials || [])];
+                          newT[tIdx] = { ...newT[tIdx], text: e.target.value };
+                          setContent((prev) => prev ? { ...prev, home: { ...prev.home, testimonials: newT } } : prev);
                         }}
                       />
                     </div>
@@ -1128,11 +1160,15 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.ctaBanner.heading}
+                    value={content.home?.ctaBanner?.heading ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: { ...content.home, ctaBanner: { ...content.home.ctaBanner, heading: e.target.value } },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const cta = prev.home?.ctaBanner || ({} as any);
+                        return {
+                          ...prev,
+                          home: { ...prev.home, ctaBanner: { ...cta, heading: e.target.value } },
+                        };
                       })
                     }
                   />
@@ -1142,11 +1178,15 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.home.ctaBanner.subheading}
+                    value={content.home?.ctaBanner?.subheading ?? ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        home: { ...content.home, ctaBanner: { ...content.home.ctaBanner, subheading: e.target.value } },
+                      setContent((prev) => {
+                        if (!prev) return prev;
+                        const cta = prev.home?.ctaBanner || ({} as any);
+                        return {
+                          ...prev,
+                          home: { ...prev.home, ctaBanner: { ...cta, subheading: e.target.value } },
+                        };
                       })
                     }
                   />
@@ -1173,12 +1213,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.about.label}
+                  value={content.about?.label ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, label: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, label: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1188,12 +1228,12 @@ export default function AdminPagesEditor() {
                   type="text"
                   className="admin-input"
                   style={{ fontWeight: 700 }}
-                  value={content.about.title}
+                  value={content.about?.title ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, title: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, title: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1202,12 +1242,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.about.subtitle}
+                  value={content.about?.subtitle ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, subtitle: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, subtitle: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1228,12 +1268,12 @@ export default function AdminPagesEditor() {
                   type="text"
                   className="admin-input"
                   style={{ fontWeight: 700 }}
-                  value={content.about.legacyTitle}
+                  value={content.about?.legacyTitle ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, legacyTitle: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, legacyTitle: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1242,12 +1282,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.about.legacyParagraph1}
+                  value={content.about?.legacyParagraph1 ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, legacyParagraph1: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, legacyParagraph1: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1256,12 +1296,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.about.legacyParagraph2}
+                  value={content.about?.legacyParagraph2 ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, legacyParagraph2: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, legacyParagraph2: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1271,7 +1311,7 @@ export default function AdminPagesEditor() {
                 <ImageFieldControl
                   label="Heritage Section Featured Image"
                   description="Senior ENT leadership and institutional legacy photo on /about."
-                  currentUrl={content.about.legacyImage}
+                  currentUrl={content.about?.legacyImage ?? ''}
                   defaultUrl="/images/dr-rattan-and-dr-anav-rattan-hero2.png"
                   defaultAlt="Dr. Ganesh Dutt Rattan and Dr. Anav Rattan at Dr. Rattan ENT Clinic"
                   previewLink="/about"
@@ -1284,10 +1324,10 @@ export default function AdminPagesEditor() {
                     if (data.media) setMediaList(data.media);
                   }}
                   onChange={(newUrl) => {
-                    setContent({
-                      ...content,
-                      about: { ...content.about, legacyImage: newUrl },
-                    });
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, legacyImage: newUrl },
+                    } : prev);
                   }}
                 />
               </div>
@@ -1307,12 +1347,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.about.mission}
+                  value={content.about?.mission ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, mission: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, mission: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1321,12 +1361,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.about.vision}
+                  value={content.about?.vision ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, vision: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, vision: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1335,12 +1375,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={2}
-                  value={content.about.ethics}
+                  value={content.about?.ethics ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      about: { ...content.about, ethics: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      about: { ...prev.about, ethics: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1364,12 +1404,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.research.title}
+                  value={content.research?.title ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      research: { ...content.research, title: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      research: { ...prev.research, title: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1378,12 +1418,12 @@ export default function AdminPagesEditor() {
                 <textarea
                   className="admin-textarea"
                   rows={3}
-                  value={content.research.subtitle}
+                  value={content.research?.subtitle ?? ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      research: { ...content.research, subtitle: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      research: { ...prev.research, subtitle: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1398,7 +1438,7 @@ export default function AdminPagesEditor() {
               </h3>
             </div>
             <div className="admin-section-body">
-              {content.research.milestones.map((m, mIdx) => (
+              {(content.research?.milestones || []).map((m, mIdx) => (
                 <div key={m.id || mIdx} style={{ background: '#f8fafc', padding: '18px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                     <span className="admin-badge admin-badge-gold">{m.badge}</span>
@@ -1410,14 +1450,14 @@ export default function AdminPagesEditor() {
                     <input
                       type="text"
                       className="admin-input"
-                      value={m.title}
+                      value={m.title || ''}
                       onChange={(e) => {
-                        const newM = [...content.research.milestones];
-                        newM[mIdx].title = e.target.value;
-                        setContent({
-                          ...content,
-                          research: { ...content.research, milestones: newM },
-                        });
+                        const newM = [...(content.research?.milestones || [])];
+                        newM[mIdx] = { ...newM[mIdx], title: e.target.value };
+                        setContent((prev) => prev ? {
+                          ...prev,
+                          research: { ...prev.research, milestones: newM },
+                        } : prev);
                       }}
                     />
                   </div>
@@ -1428,14 +1468,14 @@ export default function AdminPagesEditor() {
                       <textarea
                         className="admin-textarea"
                         rows={3}
-                        value={m.desc1}
+                        value={m.desc1 || ''}
                         onChange={(e) => {
-                          const newM = [...content.research.milestones];
-                          newM[mIdx].desc1 = e.target.value;
-                          setContent({
-                            ...content,
-                            research: { ...content.research, milestones: newM },
-                          });
+                          const newM = [...(content.research?.milestones || [])];
+                          newM[mIdx] = { ...newM[mIdx], desc1: e.target.value };
+                          setContent((prev) => prev ? {
+                            ...prev,
+                            research: { ...prev.research, milestones: newM },
+                          } : prev);
                         }}
                       />
                     </div>
@@ -1444,14 +1484,14 @@ export default function AdminPagesEditor() {
                       <textarea
                         className="admin-textarea"
                         rows={3}
-                        value={m.desc2}
+                        value={m.desc2 || ''}
                         onChange={(e) => {
-                          const newM = [...content.research.milestones];
-                          newM[mIdx].desc2 = e.target.value;
-                          setContent({
-                            ...content,
-                            research: { ...content.research, milestones: newM },
-                          });
+                          const newM = [...(content.research?.milestones || [])];
+                          newM[mIdx] = { ...newM[mIdx], desc2: e.target.value };
+                          setContent((prev) => prev ? {
+                            ...prev,
+                            research: { ...prev.research, milestones: newM },
+                          } : prev);
                         }}
                       />
                     </div>
@@ -1474,13 +1514,15 @@ export default function AdminPagesEditor() {
                         if (data.media) setMediaList(data.media);
                       }}
                       onChange={(newUrl, newAlt) => {
-                        const newM = [...content.research.milestones];
-                        newM[mIdx].image = newUrl;
-                        if (newAlt) newM[mIdx].caption = newAlt;
-                        setContent({
-                          ...content,
-                          research: { ...content.research, milestones: newM },
-                        });
+                        const newM = [...(content.research?.milestones || [])];
+                        if (newM[mIdx]) {
+                          newM[mIdx] = { ...newM[mIdx], image: newUrl };
+                          if (newAlt) newM[mIdx].caption = newAlt;
+                        }
+                        setContent((prev) => prev ? {
+                          ...prev,
+                          research: { ...prev.research, milestones: newM },
+                        } : prev);
                       }}
                     />
                   </div>
@@ -1496,19 +1538,20 @@ export default function AdminPagesEditor() {
         <div className="admin-section-block">
           <div className="admin-section-header">
             <h3 className="admin-section-title">
-              <span>All 13 Clinical Frequently Asked Questions</span>
+              <span>All Clinical Frequently Asked Questions ({content.faqs?.length || 0})</span>
             </h3>
             <button
               onClick={() => {
+                const currentFaqs = content.faqs || [];
                 const newFaq = {
                   id: `faq-${Date.now()}`,
                   category: 'General ENT',
                   q: 'New Question',
                   a: 'Detailed clinical explanation here...',
-                  order: content.faqs.length + 1,
+                  order: currentFaqs.length + 1,
                   isPublished: true,
                 };
-                setContent({ ...content, faqs: [newFaq, ...content.faqs] });
+                setContent((prev) => prev ? { ...prev, faqs: [newFaq, ...(prev.faqs || [])] } : prev);
               }}
               className="admin-btn admin-btn-primary"
               style={{ padding: '6px 12px', fontSize: '12px' }}
@@ -1518,7 +1561,7 @@ export default function AdminPagesEditor() {
           </div>
           <div className="admin-section-body">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {content.faqs.map((faq, fIdx) => (
+              {(content.faqs || []).map((faq, fIdx) => (
                 <div key={faq.id || fIdx} style={{ background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '10px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -1527,11 +1570,11 @@ export default function AdminPagesEditor() {
                         type="text"
                         className="admin-input"
                         style={{ width: '180px', padding: '4px 8px', fontSize: '12px' }}
-                        value={faq.category}
+                        value={faq.category || ''}
                         onChange={(e) => {
-                          const newF = [...content.faqs];
-                          newF[fIdx].category = e.target.value;
-                          setContent({ ...content, faqs: newF });
+                          const newF = [...(content.faqs || [])];
+                          newF[fIdx] = { ...newF[fIdx], category: e.target.value };
+                          setContent((prev) => prev ? { ...prev, faqs: newF } : prev);
                         }}
                       />
                     </div>
@@ -1539,8 +1582,8 @@ export default function AdminPagesEditor() {
                       type="button"
                       onClick={() => {
                         if (confirm('Delete this FAQ question?')) {
-                          const newF = content.faqs.filter((_, idx) => idx !== fIdx);
-                          setContent({ ...content, faqs: newF });
+                          const newF = (content.faqs || []).filter((_, idx) => idx !== fIdx);
+                          setContent((prev) => prev ? { ...prev, faqs: newF } : prev);
                         }
                       }}
                       className="admin-btn admin-btn-danger"
@@ -1556,11 +1599,11 @@ export default function AdminPagesEditor() {
                       type="text"
                       className="admin-input"
                       style={{ fontWeight: 700 }}
-                      value={faq.q}
+                      value={faq.q || ''}
                       onChange={(e) => {
-                        const newF = [...content.faqs];
-                        newF[fIdx].q = e.target.value;
-                        setContent({ ...content, faqs: newF });
+                        const newF = [...(content.faqs || [])];
+                        newF[fIdx] = { ...newF[fIdx], q: e.target.value };
+                        setContent((prev) => prev ? { ...prev, faqs: newF } : prev);
                       }}
                     />
                   </div>
@@ -1570,11 +1613,11 @@ export default function AdminPagesEditor() {
                     <textarea
                       className="admin-textarea"
                       rows={3}
-                      value={faq.a}
+                      value={faq.a || ''}
                       onChange={(e) => {
-                        const newF = [...content.faqs];
-                        newF[fIdx].a = e.target.value;
-                        setContent({ ...content, faqs: newF });
+                        const newF = [...(content.faqs || [])];
+                        newF[fIdx] = { ...newF[fIdx], a: e.target.value };
+                        setContent((prev) => prev ? { ...prev, faqs: newF } : prev);
                       }}
                     />
                   </div>
@@ -1591,13 +1634,14 @@ export default function AdminPagesEditor() {
           <div className="admin-section-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <h3 className="admin-section-title">
-                <span>Verified Gallery Photos ({content.gallery.length})</span>
+                <span>Verified Gallery Photos ({content.gallery?.length || 0})</span>
               </h3>
               <span style={{ fontSize: '12px', color: '#64748b' }}>Appears on /gallery with interactive full-screen lightbox, category filters, and captions.</span>
             </div>
             <button
               type="button"
               onClick={() => {
+                const currentGallery = content.gallery || [];
                 const newId = `g-${Date.now()}`;
                 const newPhoto = {
                   id: newId,
@@ -1606,9 +1650,9 @@ export default function AdminPagesEditor() {
                   alt: 'Dr. Rattan ENT Clinic facility photo',
                   category: 'clinic' as const,
                   categoryLabel: 'Clinic & Facility',
-                  order: content.gallery.length + 1,
+                  order: currentGallery.length + 1,
                 };
-                setContent({ ...content, gallery: [...content.gallery, newPhoto] });
+                setContent((prev) => prev ? { ...prev, gallery: [...(prev.gallery || []), newPhoto] } : prev);
               }}
               className="admin-btn admin-btn-primary"
               style={{ fontSize: '12px', padding: '6px 14px', fontWeight: 700 }}
@@ -1618,7 +1662,7 @@ export default function AdminPagesEditor() {
           </div>
           <div className="admin-section-body">
             <div className="admin-grid-3">
-              {content.gallery.map((g, gIdx) => (
+              {(content.gallery || []).map((g, gIdx) => (
                 <div
                   key={g.id || gIdx}
                   style={{
@@ -1643,11 +1687,11 @@ export default function AdminPagesEditor() {
                           disabled={gIdx === 0}
                           onClick={() => {
                             if (gIdx === 0) return;
-                            const newG = [...content.gallery];
+                            const newG = [...(content.gallery || [])];
                             const temp = newG[gIdx - 1];
                             newG[gIdx - 1] = newG[gIdx];
                             newG[gIdx] = temp;
-                            setContent({ ...content, gallery: newG });
+                            setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                           }}
                           className="admin-btn admin-btn-secondary"
                           style={{ padding: '2px 6px', fontSize: '10px' }}
@@ -1657,14 +1701,15 @@ export default function AdminPagesEditor() {
                         </button>
                         <button
                           type="button"
-                          disabled={gIdx === content.gallery.length - 1}
+                          disabled={gIdx === (content.gallery?.length || 0) - 1}
                           onClick={() => {
-                            if (gIdx === content.gallery.length - 1) return;
-                            const newG = [...content.gallery];
+                            const curLen = content.gallery?.length || 0;
+                            if (gIdx >= curLen - 1) return;
+                            const newG = [...(content.gallery || [])];
                             const temp = newG[gIdx + 1];
                             newG[gIdx + 1] = newG[gIdx];
                             newG[gIdx] = temp;
-                            setContent({ ...content, gallery: newG });
+                            setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                           }}
                           className="admin-btn admin-btn-secondary"
                           style={{ padding: '2px 6px', fontSize: '10px' }}
@@ -1676,8 +1721,8 @@ export default function AdminPagesEditor() {
                           type="button"
                           onClick={() => {
                             if (!window.confirm(`Remove photo "${g.title}" from gallery?`)) return;
-                            const newG = content.gallery.filter((_, idx) => idx !== gIdx);
-                            setContent({ ...content, gallery: newG });
+                            const newG = (content.gallery || []).filter((_, idx) => idx !== gIdx);
+                            setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                           }}
                           className="admin-btn admin-btn-danger"
                           style={{ padding: '2px 6px', fontSize: '10px' }}
@@ -1703,10 +1748,10 @@ export default function AdminPagesEditor() {
                         if (data.media) setMediaList(data.media);
                       }}
                       onChange={(newUrl, newAlt) => {
-                        const newG = [...content.gallery];
-                        newG[gIdx].src = newUrl;
+                        const newG = [...(content.gallery || [])];
+                        newG[gIdx] = { ...newG[gIdx], src: newUrl };
                         if (newAlt) newG[gIdx].alt = newAlt;
-                        setContent({ ...content, gallery: newG });
+                        setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                       }}
                     />
 
@@ -1716,11 +1761,11 @@ export default function AdminPagesEditor() {
                       <input
                         type="text"
                         className="admin-input"
-                        value={g.title}
+                        value={g.title || ''}
                         onChange={(e) => {
-                          const newG = [...content.gallery];
-                          newG[gIdx].title = e.target.value;
-                          setContent({ ...content, gallery: newG });
+                          const newG = [...(content.gallery || [])];
+                          newG[gIdx] = { ...newG[gIdx], title: e.target.value };
+                          setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                         }}
                       />
                     </div>
@@ -1733,9 +1778,9 @@ export default function AdminPagesEditor() {
                         className="admin-input"
                         value={g.alt || ''}
                         onChange={(e) => {
-                          const newG = [...content.gallery];
-                          newG[gIdx].alt = e.target.value;
-                          setContent({ ...content, gallery: newG });
+                          const newG = [...(content.gallery || [])];
+                          newG[gIdx] = { ...newG[gIdx], alt: e.target.value };
+                          setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                         }}
                       />
                     </div>
@@ -1745,12 +1790,15 @@ export default function AdminPagesEditor() {
                       <label className="admin-label">Category Filter Tab</label>
                       <select
                         className="admin-select"
-                        value={g.category}
+                        value={g.category || 'clinic'}
                         onChange={(e) => {
-                          const newG = [...content.gallery];
-                          newG[gIdx].category = e.target.value as 'surgical' | 'clinic';
-                          newG[gIdx].categoryLabel = e.target.value === 'surgical' ? 'Academic & Surgical' : 'Clinic & Facility';
-                          setContent({ ...content, gallery: newG });
+                          const newG = [...(content.gallery || [])];
+                          newG[gIdx] = {
+                            ...newG[gIdx],
+                            category: e.target.value as 'surgical' | 'clinic',
+                            categoryLabel: e.target.value === 'surgical' ? 'Academic & Surgical' : 'Clinic & Facility',
+                          };
+                          setContent((prev) => prev ? { ...prev, gallery: newG } : prev);
                         }}
                       >
                         <option value="surgical">Academic & Surgical</option>
@@ -1780,12 +1828,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.contact.address}
+                  value={content.contact?.address || ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, address: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      contact: { ...prev.contact, address: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1795,12 +1843,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.contact.phone}
+                  value={content.contact?.phone || ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, phone: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      contact: { ...prev.contact, phone: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1810,12 +1858,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.contact.whatsapp}
+                  value={content.contact?.whatsapp || ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, whatsapp: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      contact: { ...prev.contact, whatsapp: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1825,12 +1873,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="email"
                   className="admin-input"
-                  value={content.contact.email}
+                  value={content.contact?.email || ''}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      contact: { ...content.contact, email: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      contact: { ...prev.contact, email: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1844,12 +1892,12 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.contact.morningOpd}
+                    value={content.contact?.morningOpd || ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        contact: { ...content.contact, morningOpd: e.target.value },
-                      })
+                      setContent((prev) => prev ? {
+                        ...prev,
+                        contact: { ...prev.contact, morningOpd: e.target.value },
+                      } : prev)
                     }
                   />
                 </div>
@@ -1858,12 +1906,12 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.contact.eveningOpd}
+                    value={content.contact?.eveningOpd || ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        contact: { ...content.contact, eveningOpd: e.target.value },
-                      })
+                      setContent((prev) => prev ? {
+                        ...prev,
+                        contact: { ...prev.contact, eveningOpd: e.target.value },
+                      } : prev)
                     }
                   />
                 </div>
@@ -1872,12 +1920,12 @@ export default function AdminPagesEditor() {
                   <input
                     type="text"
                     className="admin-input"
-                    value={content.contact.sundayOpd}
+                    value={content.contact?.sundayOpd || ''}
                     onChange={(e) =>
-                      setContent({
-                        ...content,
-                        contact: { ...content.contact, sundayOpd: e.target.value },
-                      })
+                      setContent((prev) => prev ? {
+                        ...prev,
+                        contact: { ...prev.contact, sundayOpd: e.target.value },
+                      } : prev)
                     }
                   />
                 </div>
@@ -1911,12 +1959,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.navigation.appointmentLink || '/book-appointment'}
+                  value={content.navigation?.appointmentLink || '/book-appointment'}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      navigation: { ...content.navigation, appointmentLink: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      navigation: { ...prev.navigation, appointmentLink: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1925,12 +1973,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.navigation.whatsappNumber || '919988004806'}
+                  value={content.navigation?.whatsappNumber || '919988004806'}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      navigation: { ...content.navigation, whatsappNumber: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      navigation: { ...prev.navigation, whatsappNumber: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1954,12 +2002,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.navigation.logoText || 'Dr. Rattan'}
+                  value={content.navigation?.logoText || 'Dr. Rattan'}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      navigation: { ...content.navigation, logoText: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      navigation: { ...prev.navigation, logoText: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1968,12 +2016,12 @@ export default function AdminPagesEditor() {
                 <input
                   type="text"
                   className="admin-input"
-                  value={content.navigation.logoHighlight || 'ENT'}
+                  value={content.navigation?.logoHighlight || 'ENT'}
                   onChange={(e) =>
-                    setContent({
-                      ...content,
-                      navigation: { ...content.navigation, logoHighlight: e.target.value },
-                    })
+                    setContent((prev) => prev ? {
+                      ...prev,
+                      navigation: { ...prev.navigation, logoHighlight: e.target.value },
+                    } : prev)
                   }
                 />
               </div>
@@ -1984,12 +2032,12 @@ export default function AdminPagesEditor() {
               <input
                 type="text"
                 className="admin-input"
-                value={content.navigation.topBarHours || 'Mon–Sat: 10 AM–2 PM & 5:30–8 PM · Sun: 11 AM–1 PM'}
+                value={content.navigation?.topBarHours || 'Mon–Sat: 10 AM–2 PM & 5:30–8 PM · Sun: 11 AM–1 PM'}
                 onChange={(e) =>
-                  setContent({
-                    ...content,
-                    navigation: { ...content.navigation, topBarHours: e.target.value },
-                  })
+                  setContent((prev) => prev ? {
+                    ...prev,
+                    navigation: { ...prev.navigation, topBarHours: e.target.value },
+                  } : prev)
                 }
               />
             </div>
@@ -1999,13 +2047,13 @@ export default function AdminPagesEditor() {
               <textarea
                 className="admin-textarea"
                 rows={3}
-                value={content.navigation.footerTagline || content.footer?.description || ''}
+                value={content.navigation?.footerTagline || content.footer?.description || ''}
                 onChange={(e) =>
-                  setContent({
-                    ...content,
-                    navigation: { ...content.navigation, footerTagline: e.target.value },
-                    footer: { ...(content.footer || {}), description: e.target.value },
-                  })
+                  setContent((prev) => prev ? {
+                    ...prev,
+                    navigation: { ...prev.navigation, footerTagline: e.target.value },
+                    footer: { ...(prev.footer || {}), description: e.target.value },
+                  } : prev)
                 }
               />
             </div>
@@ -2017,10 +2065,10 @@ export default function AdminPagesEditor() {
                 className="admin-input"
                 value={content.footer?.copyright || '© 2026 Dr. Rattan ENT Clinic. All rights reserved.'}
                 onChange={(e) =>
-                  setContent({
-                    ...content,
-                    footer: { ...(content.footer || {}), copyright: e.target.value },
-                  })
+                  setContent((prev) => prev ? {
+                    ...prev,
+                    footer: { ...(prev.footer || {}), copyright: e.target.value },
+                  } : prev)
                 }
               />
             </div>

@@ -348,6 +348,24 @@ export const defaultSiteContent: SiteContent = {
         }
       ]
     },
+    patientJourney: {
+      label: "THE PROCESS",
+      title: "Your Patient Journey",
+      subtitle: "A structured, transparent clinical experience from initial consultation to complete surgical rehabilitation.",
+      steps: [
+        { id: "pj-1", stepNumber: "01", title: "Comprehensive Clinical Assessment", badge: "INITIAL CONSULTATION", icon: "stethoscope", desc: "Detailed symptom review, thorough endoscopic evaluation, and transparent discussion of your ear, nose, or throat condition." },
+        { id: "pj-2", stepNumber: "02", title: "Precision Diagnostic Workup", badge: "ADVANCED DIAGNOSTICS", icon: "microscope", desc: "High-magnification otomicroscopy, audiological assessment, and radiological review to isolate the exact anatomical cause." },
+        { id: "pj-3", stepNumber: "03", title: "Personalised Treatment Plan", badge: "TARGETED PROTOCOL", icon: "clipboard", desc: "Tailored medical management or minimally invasive surgical planning explained with complete clarity and informed consent." },
+        { id: "pj-4", stepNumber: "04", title: "Dedicated Follow-up & Recovery", badge: "CONTINUING CARE", icon: "shield", desc: "Scheduled postoperative reviews, wound inspection, and long-term functional recovery monitoring." }
+      ]
+    },
+    testimonialsSection: {
+      label: "PATIENT STORIES",
+      title: "What Our Patients Say",
+      subtitle: "Verified experiences from patients across Chandigarh, Punjab, Haryana, and Himachal Pradesh.",
+      autoplay: true,
+      autoplayInterval: 5500
+    },
     testimonials: [
       {
         id: "1",
@@ -827,37 +845,163 @@ function cleanDoctorBio(bioList?: string[]): string[] {
   });
 }
 
+// Deep merge helper ensuring every section, button, and array has fallback defaults
+export function deepMergeSiteContent(defaults: SiteContent, stored: Partial<SiteContent> | null | undefined): SiteContent {
+  if (!stored || typeof stored !== "object") return { ...defaults };
+
+  return {
+    ...defaults,
+    ...stored,
+    home: {
+      ...defaults.home,
+      ...(stored.home || {}),
+      hero: {
+        ...defaults.home.hero,
+        ...(stored.home?.hero || {}),
+        primaryButton: {
+          ...defaults.home.hero.primaryButton,
+          ...(stored.home?.hero?.primaryButton || {}),
+        },
+        secondaryButton: {
+          ...defaults.home.hero.secondaryButton,
+          ...(stored.home?.hero?.secondaryButton || {}),
+        },
+        trustPoints: Array.isArray(stored.home?.hero?.trustPoints) && stored.home.hero.trustPoints.length > 0
+          ? stored.home.hero.trustPoints
+          : defaults.home.hero.trustPoints,
+      },
+      statistics: Array.isArray(stored.home?.statistics) && stored.home.statistics.length > 0
+        ? stored.home.statistics
+        : defaults.home.statistics,
+      whyChooseUs: {
+        ...defaults.home.whyChooseUs,
+        ...(stored.home?.whyChooseUs || {}),
+        benefits: Array.isArray(stored.home?.whyChooseUs?.benefits) && stored.home.whyChooseUs.benefits.length > 0
+          ? stored.home.whyChooseUs.benefits
+          : defaults.home.whyChooseUs.benefits,
+      },
+      patientJourney: (defaults.home.patientJourney || stored.home?.patientJourney) ? {
+        label: stored.home?.patientJourney?.label ?? defaults.home.patientJourney?.label ?? "PATIENT CARE PATHWAY",
+        title: stored.home?.patientJourney?.title ?? defaults.home.patientJourney?.title ?? "Your Journey From Consultation to Recovery",
+        subtitle: stored.home?.patientJourney?.subtitle ?? defaults.home.patientJourney?.subtitle ?? "Structured, compassionate, and transparent ENT care at every single touchpoint.",
+        steps: Array.isArray(stored.home?.patientJourney?.steps) && stored.home.patientJourney.steps.length > 0
+          ? stored.home.patientJourney.steps
+          : defaults.home.patientJourney?.steps || [],
+      } : undefined,
+      testimonialsSection: (defaults.home.testimonialsSection || stored.home?.testimonialsSection) ? {
+        label: stored.home?.testimonialsSection?.label ?? defaults.home.testimonialsSection?.label ?? "PATIENT EXPERIENCES",
+        title: stored.home?.testimonialsSection?.title ?? defaults.home.testimonialsSection?.title ?? "Real Stories From Real Patients",
+        subtitle: stored.home?.testimonialsSection?.subtitle ?? defaults.home.testimonialsSection?.subtitle ?? "Read verified feedback from individuals and families who received ENT care with Dr. Anav Rattan.",
+        autoplay: stored.home?.testimonialsSection?.autoplay ?? defaults.home.testimonialsSection?.autoplay ?? true,
+        autoplayInterval: stored.home?.testimonialsSection?.autoplayInterval ?? defaults.home.testimonialsSection?.autoplayInterval ?? 6000,
+        items: Array.isArray(stored.home?.testimonialsSection?.items) && stored.home.testimonialsSection.items.length > 0
+          ? stored.home.testimonialsSection.items
+          : defaults.home.testimonialsSection?.items || [],
+      } : undefined,
+      testimonials: Array.isArray(stored.home?.testimonials) && stored.home.testimonials.length > 0
+        ? stored.home.testimonials
+        : defaults.home.testimonials,
+      ctaBanner: {
+        ...defaults.home.ctaBanner,
+        ...(stored.home?.ctaBanner || {}),
+      },
+    },
+    about: {
+      ...defaults.about,
+      ...(stored.about || {}),
+      facilities: Array.isArray(stored.about?.facilities) && stored.about.facilities.length > 0
+        ? stored.about.facilities
+        : defaults.about.facilities,
+      patientJourney: Array.isArray(stored.about?.patientJourney) && stored.about.patientJourney.length > 0
+        ? stored.about.patientJourney
+        : defaults.about.patientJourney,
+    },
+    services: Array.isArray(stored.services) && stored.services.length > 0
+      ? stored.services
+      : defaults.services,
+    doctors: Array.isArray(stored.doctors) && stored.doctors.length > 0
+      ? stored.doctors.map((storedDoc, idx) => {
+          const defaultDoc = defaults.doctors.find((d) => d.slug === storedDoc.slug || d.id === storedDoc.id) || defaults.doctors[idx] || defaults.doctors[0];
+          return {
+            ...defaultDoc,
+            ...storedDoc,
+            image: storedDoc.image || defaultDoc?.image || "",
+            specialties: Array.isArray(storedDoc.specialties) && storedDoc.specialties.length > 0
+              ? storedDoc.specialties
+              : defaultDoc?.specialties || [],
+            education: Array.isArray(storedDoc.education) && storedDoc.education.length > 0
+              ? storedDoc.education
+              : defaultDoc?.education || [],
+            detailedBio: Array.isArray(storedDoc.detailedBio) && storedDoc.detailedBio.length > 0
+              ? storedDoc.detailedBio
+              : defaultDoc?.detailedBio || [],
+          };
+        })
+      : defaults.doctors,
+    research: {
+      ...defaults.research,
+      ...(stored.research || {}),
+      milestones: Array.isArray(stored.research?.milestones) && stored.research.milestones.length > 0
+        ? stored.research.milestones
+        : defaults.research.milestones,
+      ongoingInquiry: Array.isArray(stored.research?.ongoingInquiry) && stored.research.ongoingInquiry.length > 0
+        ? stored.research.ongoingInquiry
+        : defaults.research.ongoingInquiry,
+    },
+    faqs: Array.isArray(stored.faqs) && stored.faqs.length > 0
+      ? stored.faqs
+      : defaults.faqs,
+    gallery: Array.isArray(stored.gallery) && stored.gallery.length > 0
+      ? stored.gallery
+      : defaults.gallery,
+    contact: {
+      ...defaults.contact,
+      ...(stored.contact || {}),
+    },
+    navigation: {
+      ...defaults.navigation,
+      ...(stored.navigation || {}),
+      links: Array.isArray(stored.navigation?.links) && stored.navigation.links.length > 0
+        ? stored.navigation.links
+        : defaults.navigation.links,
+    },
+    footer: {
+      ...defaults.footer,
+      ...(stored.footer || {}),
+    },
+  };
+}
+
 // Content Accessors
 export async function getSiteContent(): Promise<SiteContent> {
   const data = await readPersistentJson<SiteContent>("site-content", CONTENT_FILE, BUNDLED_CONTENT_FILE);
-  if (data) {
-    let modified = false;
-    if (Array.isArray(data.doctors)) {
-      data.doctors = data.doctors.map((doc) => {
-        if (doc.slug === "anav-rattan" && Array.isArray(doc.detailedBio)) {
-          const cleaned = cleanDoctorBio(doc.detailedBio);
-          if (JSON.stringify(cleaned) !== JSON.stringify(doc.detailedBio)) {
-            modified = true;
-            return { ...doc, detailedBio: cleaned };
-          }
+  const content = deepMergeSiteContent(defaultSiteContent, data);
+
+  let modified = false;
+  if (Array.isArray(content.doctors)) {
+    content.doctors = content.doctors.map((doc) => {
+      if (doc.slug === "anav-rattan" && Array.isArray(doc.detailedBio)) {
+        const cleaned = cleanDoctorBio(doc.detailedBio);
+        if (JSON.stringify(cleaned) !== JSON.stringify(doc.detailedBio)) {
+          modified = true;
+          return { ...doc, detailedBio: cleaned };
         }
-        return doc;
-      });
-    }
-    if (modified) {
-      writePersistentJson("site-content", data, CONTENT_FILE).catch(() => {});
-    }
-    memoryContent = data;
-    return data;
+      }
+      return doc;
+    });
   }
-  if (memoryContent) return memoryContent;
-  memoryContent = defaultSiteContent;
-  return defaultSiteContent;
+  if (modified) {
+    writePersistentJson("site-content", content, CONTENT_FILE).catch(() => { });
+  }
+
+  memoryContent = content;
+  return content;
 }
 
 export async function updateSiteContent(content: SiteContent): Promise<{ success: boolean; persistedTo: string[]; savedAt: string; content: SiteContent }> {
-  memoryContent = content;
-  const result = await writePersistentJson("site-content", content, CONTENT_FILE);
+  const merged = deepMergeSiteContent(defaultSiteContent, content);
+  memoryContent = merged;
+  const result = await writePersistentJson("site-content", merged, CONTENT_FILE);
 
   // Invalidate Next.js cache across all public pages
   try {
