@@ -124,13 +124,13 @@ export default async function ResearchPage() {
 
                 {hasM1Image && (
                   <div style={{ borderRadius: "16px", overflow: "hidden", boxShadow: "0 12px 36px rgba(18,54,83,0.1)", border: "1px solid rgba(18,54,83,0.1)", background: "var(--cream)", width: "100%", maxWidth: "500px", margin: "0 auto" }}>
-                    <div style={{ position: "relative", width: "100%", aspectRatio: "3 / 4" }}>
+                    <div style={{ position: "relative", width: "100%", aspectRatio: "4 / 5" }}>
                       <Image 
                         src={m1.image}
                         alt={m1.caption || "Dr. Anav Rattan at IAOHNS 2023 Conference in Jammu"}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-                        style={{ objectFit: "cover", objectPosition: "center" }}
+                        style={{ objectFit: "cover", objectPosition: "top center" }}
                         priority
                       />
                     </div>
@@ -196,7 +196,8 @@ export default async function ResearchPage() {
                 <div style={{ fontSize: "14px", fontWeight: 600, color: "var(--navy)" }}>{m2.focusTitle}</div>
                 <div style={{ fontSize: "13px", color: "var(--text-muted)", marginTop: "4px" }}>
                   {(m2.focusDesc || "Round Window Insertion & Intraoperative Neural Response Telemetry at KEM Hospital Mumbai.")
-                    .replace(/\bVerification\s*/gi, "")
+                    .replace(/<[^>]*>/g, " ")
+                    .replace(/\bVerification\b/gi, "")
                     .replace(/\s{2,}/g, " ")
                     .trim()}
                 </div>

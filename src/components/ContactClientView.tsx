@@ -95,7 +95,7 @@ export default function ContactClientView({ contact }: { contact?: ContactConfig
       <section style={{ padding: "clamp(2.5rem, 5vw, 5rem) clamp(1rem, 4vw, 2rem)", background: "var(--cream)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))", gap: "clamp(24px, 4vw, 40px)", alignItems: "start" }}>
-            
+
             {/* Left: Contact Details & OPD Hours */}
             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
               {/* Card 1: Clinic Coordinates */}
@@ -113,9 +113,9 @@ export default function ContactClientView({ contact }: { contact?: ContactConfig
                     <div style={{ color: "var(--text-muted)", fontSize: "14px", lineHeight: 1.6, whiteSpace: "pre-line" }}>
                       {addressDisplay}
                     </div>
-                    <a 
-                      href={mapsUrl} 
-                      target="_blank" 
+                    <a
+                      href={mapsUrl}
+                      target="_blank"
                       rel="noopener noreferrer"
                       style={{ display: "inline-block", marginTop: "8px", fontSize: "13px", fontWeight: 600, color: "var(--gold)", textDecoration: "none" }}
                     >

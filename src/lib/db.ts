@@ -105,7 +105,7 @@ async function setUpstashJson(key: string, data: unknown): Promise<boolean> {
 
 async function commitJsonToGitHub(filePathInRepo: string, data: unknown): Promise<boolean> {
   const token = process.env.GITHUB_TOKEN || process.env.GITHUB_PAT;
-  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || "sagarkiisha8-netizen/new-anav-rattan";
+  const repo = process.env.GITHUB_REPO || process.env.GITHUB_REPOSITORY || "sagarkiisha8-netizen/dr-anav-rattan";
   if (!token || !repo) return false;
   try {
     let sha;
@@ -295,7 +295,7 @@ export const defaultSiteContent: SiteContent = {
       description: "Providing comprehensive ear, nose, throat, sinus, allergy, voice, hearing, and head-and-neck care with institution-level expertise and compassionate patient care.",
       primaryButton: { label: "Book Appointment", link: "/book-appointment", variant: "primary" },
       secondaryButton: { label: "Explore Our Services", link: "/services", variant: "secondary" },
-      image: "/images/dr-rattan-and-dr-anav-rattan-hero2.png",
+      image: "",
       doctorCardName: "Dr. Ganesh Dutt Rattan & Dr. Anav Rattan",
       doctorCardRole: "ENT Specialists",
       doctorCardClinic: "Dr. Rattan ENT Clinic",
@@ -304,7 +304,7 @@ export const defaultSiteContent: SiteContent = {
     statistics: [
       { number: "35+", label: "Years Experienced ENT Specialists" },
       { number: "100%", label: "Patient-Centred Treatment" },
-      { number: "24/7", label: "Advanced Diagnostic Care" },
+      { number: "8+", label: "Peer-reviewed publications" },
       { number: "Modern", label: "Clinical & Audiology Facilities" }
     ],
     whyChooseUs: {
@@ -520,7 +520,8 @@ export const defaultSiteContent: SiteContent = {
       slug: "ganesh-dutt-rattan",
       name: "Dr. Ganesh Dutt Rattan",
       title: "Founder & Senior Consultant ENT Surgeon",
-      degrees: "MBBS · DLO-IGMC Shimla · MS (ENT), PGI Chandigarh",
+      degrees: "MBBS · DLO · MS (ENT), PGI Chandigarh",
+      qualifications: "MBBS · DLO · MS (ENT), PGI Chandigarh",
       regNumber: "Punjab Medical Council (PMC) Reg. No. 23702",
       bio: "Founder of Dr. Rattan ENT Clinic with over 35 years of dedicated surgical practice. Former Senior Resident at PGIMER Chandigarh and Sir Ganga Ram Hospital, New Delhi.",
       detailedBio: [
@@ -529,7 +530,7 @@ export const defaultSiteContent: SiteContent = {
         "His clinical approach is rooted in uncompromising diagnostic accuracy, gentle patient listening, and conservative surgical decision-making. Over thirty-five years, he has successfully treated tens of thousands of complex ear, nose, and throat cases with enduring results."
       ],
       experience: "35+ Years in Surgical Practice",
-      image: "/images/dr-ganesh-dutt-rattan-0.jpeg",
+      image: "/uploads/1790757765945-dr-ganesh-final-clean.jpg",
       specialties: [
         "Microscopic Ear Surgery (Tympanoplasty, Mastoidectomy)",
         "Chronic Otitis Media & Hearing Restoration",
@@ -551,7 +552,8 @@ export const defaultSiteContent: SiteContent = {
         "Vocal Cord & Laryngeal Disorders",
         "Pediatric Hearing & Airway Concerns"
       ],
-      opdTimings: "Mon–Sat: 10:00 AM – 2:00 PM & 5:30 PM – 8:00 PM | Sun: 11:00 AM – 1:00 PM",
+      opdTimings: "Mon–Sat: 10:00 AM – 2:00 PM",
+      schedule: "Mon–Sat: 10:00 AM – 2:00 PM",
       isPublished: true,
       order: 1
     },
@@ -560,7 +562,8 @@ export const defaultSiteContent: SiteContent = {
       slug: "anav-rattan",
       name: "Dr. Anav Rattan",
       title: "Consultant ENT, Otologist & Skull Base Surgeon",
-      degrees: "MS (ENT), DNB",
+      degrees: "MBBS MS ENT DNB",
+      qualifications: "MBBS MS ENT DNB",
       bio: "Subspecialist in Advanced Otology, Cochlear Implantation, Lateral Skull Base Surgery, and Neuro-otology. Trained at Seth G.S. Medical College & KEM Hospital, Mumbai and PGIMER Chandigarh.",
       detailedBio: [
         "Dr. Anav Rattan is an accomplished ENT surgeon with subspecialised training in Otology, Auditory Implantation, and Skull Base Surgery.",
@@ -568,7 +571,7 @@ export const defaultSiteContent: SiteContent = {
         "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
       ],
       experience: "Institutional Specialised Practice",
-      image: "/images/dr-anav-rattan-1.jpeg",
+      image: "/uploads/1790757795326-dr-anav-aligned-800x1000.jpg",
       specialties: [
         "Cochlear Implantation & Auditory Rehabilitation",
         "Lateral Skull Base Surgery & Acoustic Neuroma Management",
@@ -589,7 +592,8 @@ export const defaultSiteContent: SiteContent = {
         "Intractable Vertigo & Vestibular Dysfunction",
         "Skull Base Tumors & Temporal Bone Pathology"
       ],
-      opdTimings: "Mon–Sat: 10:00 AM – 2:00 PM & 5:30 PM – 8:00 PM | Sun: 11:00 AM – 1:00 PM",
+      opdTimings: "Mon–Fri: 5:00 PM – 7:30 PM | Set Sun: 11:00 AM – 1:00 PM",
+      schedule: "Mon–Fri: 5:00 PM – 7:30 PM | Set Sun: 11:00 AM – 1:00 PM",
       isPublished: true,
       order: 2
     }
@@ -760,8 +764,8 @@ export const defaultSiteContent: SiteContent = {
     email: "rattananav@gmail.com",
     googleMapsUrl: "https://maps.google.com/?q=Sector+33C+Chandigarh",
     morningOpd: "10:00 AM – 2:00 PM (Mon – Sat)",
-    eveningOpd: "5:30 PM – 8:00 PM (Mon – Sat)",
-    sundayOpd: "11:00 AM – 1:00 PM"
+    eveningOpd: "5:30 PM – 7:30 PM (Mon – Fri)",
+    sundayOpd: "11:00 AM – 1:00 PM (Set-Sun)"
   },
   navigation: {
     logoText: "Dr. Rattan",
@@ -783,7 +787,7 @@ export const defaultSiteContent: SiteContent = {
   }
 };
 
-// Initial media items seeded from all 18 existing public/images
+// Initial media items seeded from existing public images and verified uploads
 const defaultMediaItems: MediaItem[] = [
   { id: "m-1", url: "/images/dr-rattan-and-dr-anav-rattan-hero2.png", filename: "dr-rattan-and-dr-anav-rattan-hero2.png", title: "Dr. Ganesh Dutt Rattan & Dr. Anav Rattan Joint Hero", alt: "Dr. Ganesh Dutt Rattan and Dr. Anav Rattan - Senior ENT Specialists", sizeBytes: 1688023, mimeType: "image/png", uploadedAt: new Date().toISOString() },
   { id: "m-2", url: "/images/dr-ganesh-dutt-rattan-0.jpeg", filename: "dr-ganesh-dutt-rattan-0.jpeg", title: "Dr. Ganesh Dutt Rattan Portrait", alt: "Dr. Ganesh Dutt Rattan Senior ENT Surgeon", sizeBytes: 62351, mimeType: "image/jpeg", uploadedAt: new Date().toISOString() },
@@ -803,6 +807,8 @@ const defaultMediaItems: MediaItem[] = [
   { id: "m-16", url: "/images/clinic-seating-area-6.jpeg", filename: "clinic-seating-area-6.jpeg", title: "Air-Conditioned Patient Seating Area", alt: "Air-conditioned patient seating area and consultation corridor", sizeBytes: 32415, mimeType: "image/jpeg", uploadedAt: new Date().toISOString() },
   { id: "m-17", url: "/images/clinic-entrance-area-7.jpeg", filename: "clinic-entrance-area-7.jpeg", title: "Clinic Entrance & Handcrafted Teak Chambers", alt: "Clinic main entrance with handcrafted teak consultation chamber doors", sizeBytes: 28956, mimeType: "image/jpeg", uploadedAt: new Date().toISOString() },
   { id: "m-18", url: "/images/dr-g-d-rattan-nameplate-5.jpeg", filename: "dr-g-d-rattan-nameplate-5.jpeg", title: "Senior Consultant Chambers Nameplate", alt: "Consultation chamber entrance for Senior ENT Surgeon Dr. Ganesh Dutt Rattan", sizeBytes: 36127, mimeType: "image/jpeg", uploadedAt: new Date().toISOString() },
+  { id: "m-19", url: "/uploads/1790757765945-dr-ganesh-final-clean.jpg", filename: "1790757765945-dr-ganesh-final-clean.jpg", title: "Dr. Ganesh Dutt Rattan Aligned Clean Portrait", alt: "Dr. Ganesh Dutt Rattan Senior ENT Surgeon", sizeBytes: 206200, mimeType: "image/jpeg", uploadedAt: "2026-09-26T08:36:05.000Z" },
+  { id: "m-20", url: "/uploads/1790757795326-dr-anav-aligned-800x1000.jpg", filename: "1790757795326-dr-anav-aligned-800x1000.jpg", title: "Dr. Anav Rattan Aligned Portrait", alt: "Dr. Anav Rattan Otologist and Skull Base Surgeon", sizeBytes: 198256, mimeType: "image/jpeg", uploadedAt: "2026-09-26T08:36:35.000Z" },
 ];
 
 function cleanDoctorBio(bioList?: string[]): string[] {

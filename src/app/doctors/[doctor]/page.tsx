@@ -126,6 +126,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${doctor.name} - ${doctor.degrees} | Dr. Rattan ENT Clinic`,
     description: `${doctor.name}, ${doctor.title} at Dr. Rattan ENT Clinic Chandigarh. ${doctor.bio}`,
+    alternates: {
+      canonical: `/doctors/${doctor.slug}`,
+    },
   };
 }
 

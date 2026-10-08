@@ -732,6 +732,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${service.title} | Dr. Rattan ENT Clinic`,
     description: service.intro,
+    alternates: {
+      canonical: `/services/${serviceSlug}`,
+    },
   };
 }
 

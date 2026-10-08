@@ -15,7 +15,7 @@
         "link": "/services",
         "variant": "secondary"
       },
-      "image": "/images/dr-rattan-and-dr-anav-rattan-hero2.png",
+      "image": "",
       "doctorCardName": "Dr. Ganesh Dutt Rattan & Dr. Anav Rattan",
       "doctorCardRole": "ENT Specialists",
       "doctorCardClinic": "Dr. Rattan ENT Clinic",
@@ -35,8 +35,8 @@
         "label": "Patient-Centred Treatment"
       },
       {
-        "number": "24/7",
-        "label": "Advanced Diagnostic Care"
+        "number": "8+",
+        "label": "Peer-reviewed publications"
       },
       {
         "number": "Modern",
@@ -348,7 +348,7 @@
       "slug": "ganesh-dutt-rattan",
       "name": "Dr. Ganesh Dutt Rattan",
       "title": "Founder & Senior Consultant ENT Surgeon",
-      "degrees": "MBBS · DLO-IGMC Shimla · MS (ENT), PGI Chandigarh",
+      "degrees": "MBBS · DLO · MS (ENT), PGI Chandigarh",
       "regNumber": "Punjab Medical Council (PMC) Reg. No. 23702",
       "bio": "Founder of Dr. Rattan ENT Clinic with over 35 years of dedicated surgical practice. Former Senior Resident at PGIMER Chandigarh and Sir Ganga Ram Hospital, New Delhi.",
       "detailedBio": [
@@ -357,7 +357,7 @@
         "His clinical approach is rooted in uncompromising diagnostic accuracy, gentle patient listening, and conservative surgical decision-making. Over thirty-five years, he has successfully treated tens of thousands of complex ear, nose, and throat cases with enduring results."
       ],
       "experience": "35+ Years in Surgical Practice",
-      "image": "/images/dr-ganesh-dutt-rattan-0.jpeg",
+      "image": "/uploads/1790757765945-dr-ganesh-final-clean.jpg",
       "specialties": [
         "Microscopic Ear Surgery (Tympanoplasty, Mastoidectomy)",
         "Chronic Otitis Media & Hearing Restoration",
@@ -379,16 +379,19 @@
         "Vocal Cord & Laryngeal Disorders",
         "Pediatric Hearing & Airway Concerns"
       ],
-      "opdTimings": "Mon–Sat: 10:00 AM – 2:00 PM & 5:30 PM – 8:00 PM | Sun: 11:00 AM – 1:00 PM",
+      "opdTimings": "Mon–Sat: 10:00 AM – 2:00 PM ",
       "isPublished": true,
-      "order": 1
+      "order": 1,
+      "objectPosition": "center top",
+      "schedule": "Mon–Sat: 10:00 AM – 2:00 PM ",
+      "qualifications": "MBBS · DLO · MS (ENT), PGI Chandigarh"
     },
     {
       "id": "doc-2",
       "slug": "anav-rattan",
       "name": "Dr. Anav Rattan",
       "title": "Consultant ENT, Otologist & Skull Base Surgeon",
-      "degrees": "MS (ENT), DNB",
+      "degrees": "MBBS MS ENT DNB",
       "bio": "Subspecialist in Advanced Otology, Cochlear Implantation, Lateral Skull Base Surgery, and Neuro-otology. Trained at Seth G.S. Medical College & KEM Hospital, Mumbai and PGIMER Chandigarh.",
       "detailedBio": [
         "Dr. Anav Rattan is an accomplished ENT surgeon with subspecialised training in Otology, Auditory Implantation, and Skull Base Surgery.",
@@ -396,7 +399,7 @@
         "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
       ],
       "experience": "Institutional Specialised Practice",
-      "image": "/images/dr-anav-rattan-1.jpeg",
+      "image": "/uploads/1790757795326-dr-anav-aligned-800x1000.jpg",
       "specialties": [
         "Cochlear Implantation & Auditory Rehabilitation",
         "Lateral Skull Base Surgery & Acoustic Neuroma Management",
@@ -417,9 +420,12 @@
         "Intractable Vertigo & Vestibular Dysfunction",
         "Skull Base Tumors & Temporal Bone Pathology"
       ],
-      "opdTimings": "Mon–Sat: 10:00 AM – 2:00 PM & 5:30 PM – 8:00 PM | Sun: 11:00 AM – 1:00 PM",
+      "opdTimings": "Mon–Fri: 5:00 PM – 7:30 PM | Set Sun: 11:00 AM – 1:00 PM",
       "isPublished": true,
-      "order": 2
+      "order": 2,
+      "objectPosition": "center top",
+      "schedule": "Mon–Fri: 5:00 PM – 7:30 PM | Set Sun: 11:00 AM – 1:00 PM",
+      "qualifications": "MBBS MS ENT DNB"
     }
   ],
   "research": {
@@ -720,8 +726,8 @@
     "email": "rattananav@gmail.com",
     "googleMapsUrl": "https://maps.google.com/?q=Sector+33C+Chandigarh",
     "morningOpd": "10:00 AM – 2:00 PM (Mon – Sat)",
-    "eveningOpd": "5:30 PM – 8:00 PM (Mon – Sat)",
-    "sundayOpd": "11:00 AM – 1:00 PM"
+    "eveningOpd": "5:30 PM – 7:30 PM (Mon – Fri)",
+    "sundayOpd": "11:00 AM – 1:00 PM (Set-Sun)"
   },
   "navigation": {
     "logoText": "Dr. Rattan",
