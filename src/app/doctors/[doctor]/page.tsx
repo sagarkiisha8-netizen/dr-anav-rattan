@@ -47,7 +47,7 @@ const ganeshData: DoctorData = {
     "Former Senior Resident — PGIMER, Chandigarh",
     "Former Senior Resident — Sir Ganga Ram Hospital, New Delhi",
     "DLO-IGMC Shimla",
-    "MBBS — Renowned Government Medical Institution"
+    "MBBS — IGMC Shimla"
   ],
   clinicalFocus: [
     "Middle Ear Reconstruction",
@@ -66,7 +66,7 @@ const anavData: DoctorData = {
   bio: "Subspecialist in Advanced Otology, Cochlear Implantation, Lateral Skull Base Surgery, and Neuro-otology. Trained at Seth G.S. Medical College & KEM Hospital, Mumbai and PGIMER Chandigarh.",
   detailedBio: [
     "Dr. Anav Rattan is an accomplished ENT surgeon with subspecialised training in Otology, Auditory Implantation, and Skull Base Surgery.",
-    "He completed his MS (ENT) from the prestigious Seth G.S. Medical College & KEM Hospital, Mumbai, followed by a demanding Senior Residency at PGIMER, Chandigarh. He holds the prestigious Diplomate of National Board (DNB) and Membership of the National Academy of Medical Sciences (MNAMS).",
+    "He completed his MS (ENT) from the prestigious Seth G.S. Medical College & KEM Hospital, Mumbai, followed by a demanding Senior Residency at PGIMER, Chandigarh. He holds the prestigious Diplomate of National Board (DNB).",
     "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
   ],
   experience: "Institutional Specialised Practice",
@@ -150,10 +150,14 @@ export default async function DoctorProfilePage({ params }: Props) {
     notFound();
   }
 
-  // Ensure detailedBio terminates cleanly at scientific forums without deprecated trailing phrases
+  // Ensure detailedBio and education reflect verified credentials without deprecated claims
   if (doctor.detailedBio && Array.isArray(doctor.detailedBio)) {
     doctor.detailedBio = doctor.detailedBio.map((p) =>
       p
+        .replace(
+          /\s*and\s+Membership\s+of\s+the\s+National\s+Academy\s+of\s+Medical\s+Sciences\s*\(MNAMS\)/gi,
+          ""
+        )
         .replace(
           /,?\s*including the Indian Academy of Otolaryngology\s*[-–—]\s*Head\s*&?\s*Neck Surgery \(IAOHNS\)\.?\s*His clinical practice integrates high-magnification microsurgery, rigid endoscopy, and vestibular diagnostic protocols\.?/gi,
           ""
@@ -163,6 +167,12 @@ export default async function DoctorProfilePage({ params }: Props) {
           "Dr. Anav Rattan has completed advanced certified training in the Cochlear Implant Programme at KEM Hospital Mumbai and actively presents his research at national scientific forums."
         )
         .trim()
+    );
+  }
+
+  if (doctor.education && Array.isArray(doctor.education)) {
+    doctor.education = doctor.education.map((e) =>
+      e.replace("MBBS — Renowned Government Medical Institution", "MBBS — IGMC Shimla")
     );
   }
 

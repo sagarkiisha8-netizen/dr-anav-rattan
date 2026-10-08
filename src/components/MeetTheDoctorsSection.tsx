@@ -194,7 +194,7 @@ export default function MeetTheDoctorsSection({ doctors: propDoctors }: MeetTheD
           </h2>
 
           <p style={{ fontSize: "15.5px", color: "var(--muted)", maxWidth: "560px", margin: "0 auto", lineHeight: 1.7 }}>
-            Decades of institutional surgical leadership and dedicated patient care in Sector 21-A, Chandigarh.
+            Decades of institutional surgical leadership and dedicated patient care in Sector 33C, Chandigarh.
           </p>
         </div>
 
