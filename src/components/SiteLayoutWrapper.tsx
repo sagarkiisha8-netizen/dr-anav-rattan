@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppCTA from "@/components/WhatsAppCTA";
+import MobileBottomActionBar from "@/components/MobileBottomActionBar";
 
 export default function SiteLayoutWrapper({
   children,
@@ -53,6 +54,7 @@ export default function SiteLayoutWrapper({
       {children}
       <WhatsAppCTA />
       <Footer />
+      <MobileBottomActionBar />
     </>
   );
 }

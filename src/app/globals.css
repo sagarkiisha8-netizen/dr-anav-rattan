@@ -2305,5 +2305,126 @@ body.menu-open netlify-drawer {
   }
 }
 
+/* ========================================================
+   PREMIUM MOBILE STICKY BOTTOM ACTION BAR (< 768px)
+   ======================================================== */
+.mobile-bottom-action-bar {
+  display: none;
+}
+
+.mobile-bottom-action-spacer {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-bottom-action-bar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9990;
+    background: #0B1B2B;
+    border-top: 1px solid rgba(201, 162, 74, 0.35);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.28);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+  }
+
+  .mobile-bottom-action-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 8px 4px 6px;
+    box-sizing: border-box;
+  }
+
+  .mobile-bottom-action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 3px 2px;
+    border-radius: 8px;
+    transition: background 0.18s ease, transform 0.12s ease;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    min-height: 48px;
+  }
+
+  .mobile-bottom-action-item:hover,
+  .mobile-bottom-action-item:focus-visible {
+    background: rgba(201, 162, 74, 0.12);
+  }
+
+  .mobile-bottom-action-item:active {
+    background: rgba(201, 162, 74, 0.2);
+    transform: scale(0.96);
+  }
+
+  .mobile-action-icon-box {
+    width: 35px;
+    height: 35px;
+    border: 1.5px solid #C9A24A;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C9A24A;
+    background: rgba(201, 162, 74, 0.05);
+    transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+    flex-shrink: 0;
+  }
+
+  .mobile-bottom-action-item:hover .mobile-action-icon-box,
+  .mobile-bottom-action-item:active .mobile-action-icon-box {
+    border-color: #d4b06a;
+    background: rgba(201, 162, 74, 0.15);
+    color: #d4b06a;
+  }
+
+  .mobile-action-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-top: 4.5px;
+    line-height: 1.1;
+    font-family: var(--sans);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .mobile-bottom-action-spacer {
+    display: block;
+    width: 100%;
+    height: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-action-bar,
+  .mobile-bottom-action-spacer {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-bottom-action-item,
+  .mobile-action-icon-box {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+
 
 
