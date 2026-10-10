@@ -12,7 +12,7 @@ export const SITE_URL = (
  */
 export function absoluteUrl(path: string = ""): string {
   if (!path || path === "/") {
-    return SITE_URL;
+    return `${SITE_URL}/`;
   }
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_URL}${cleanPath}`;

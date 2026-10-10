@@ -2,7 +2,6 @@ import { MetadataRoute } from "next";
 import { SITE_URL, absoluteUrl } from "@/lib/siteConfig";
 import { getSiteContent, defaultSiteContent } from "@/lib/db";
 
-export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
