@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
   NETLIFY_DEPLOY_PREVIEWS = "false"
+  NEXT_PUBLIC_SITE_URL = "https://drrattanentchd.com"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

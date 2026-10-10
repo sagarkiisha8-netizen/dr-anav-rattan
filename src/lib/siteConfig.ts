@@ -4,7 +4,7 @@
  */
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://drrattanentclinic.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://drrattanentchd.com"
 ).replace(/\/+$/, "");
 
 /**
