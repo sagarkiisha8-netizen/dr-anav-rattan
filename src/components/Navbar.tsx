@@ -118,7 +118,7 @@ export default function Navbar() {
     <>
       <header className={`site-header${isScrolled ? " header-scrolled" : ""}${isMobileMenuOpen ? " mobile-menu-active" : ""}`}>
       {/* Top Gradient Rule */}
-      <div style={{ height: "3px", background: "linear-gradient(90deg,var(--navy) 0%,var(--gold) 30%,var(--gold2) 60%,var(--gold) 80%,var(--navy) 100%)" }} />
+      <div className="top-gradient-rule" style={{ height: "3px", background: "linear-gradient(90deg,var(--navy) 0%,var(--gold) 30%,var(--gold2) 60%,var(--gold) 80%,var(--navy) 100%)" }} />
 
       {/* Top Bar */}
       <div className="top-bar">

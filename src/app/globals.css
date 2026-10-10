@@ -30,6 +30,17 @@ section[id], div[id]{scroll-margin-top:120px}
 /* Spacer that pushes page content below the fixed header */
 /* Desktop: top-bar(~37px) + gradient(3px) + nav(68px) = ~108px */
 .nav-header-spacer{height:108px}
+
+/* Top contact information bar hidden below 1024px on mobile & tablet screens */
+@media(max-width:1023px){
+  .top-bar,
+  .top-gradient-rule{display:none !important}
+  .nav-header-spacer{height:68px}
+}
+@media(min-width:1024px){
+  .top-bar{display:flex !important}
+  .top-gradient-rule{display:block !important}
+}
 .nav-right-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .mob-cta-item{display:none !important}
 .book-btn-full{display:inline}
@@ -147,14 +158,12 @@ nav:not(.admin-nav):not(.mobile-bottom-action-bar).nav-scrolled{background:rgba(
    Tested: 320 / 340 / 360 / 375 / 390 / 412px
    ============================================================ */
 @media(max-width:980px){
-  /* Top Bar on Mobile: minimal, single clean line, no awkward wrapping, email hidden */
-  .top-bar{padding:7px 1rem;font-size:11.5px;justify-content:center}
-  .top-bar-left{display:none !important}
-  .top-bar-right{display:flex;gap:1.25rem;align-items:center;justify-content:center;flex-wrap:nowrap}
-  .top-bar-email{display:none !important}
+  /* Top Bar completely hidden on mobile/tablet below 1024px */
+  .top-bar,
+  .top-gradient-rule{display:none !important}
 
-  /* Fixed header spacer on mobile: top-bar(~31px) + gradient(3px) + nav(64px) = 98px */
-  .nav-header-spacer{height:98px}
+  /* Fixed header spacer on mobile: nav(64px) = 64px (top bar hidden, zero blank gap) */
+  .nav-header-spacer{height:64px}
 
   /* Main navbar on mobile: crisp white background, no filters, no blur */
   nav:not(.admin-nav):not(.mobile-bottom-action-bar){
@@ -250,13 +259,13 @@ nav:not(.admin-nav):not(.mobile-bottom-action-bar).nav-scrolled{background:rgba(
   .nav-links{
     display:flex;
     position:fixed;
-    top:98px;
+    top:64px;
     left:0;
     right:0;
     bottom:0;
     width:100%;
-    height:calc(100vh - 98px);
-    height:calc(100dvh - 98px);
+    height:calc(100vh - 64px);
+    height:calc(100dvh - 64px);
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
     overscroll-behavior:contain;
@@ -388,8 +397,6 @@ nav:not(.admin-nav):not(.mobile-bottom-action-bar).nav-scrolled{background:rgba(
 
 /* ── 360px: Reduce further, keep text on WA & Book ── */
 @media(max-width:360px){
-  .top-bar{padding:5px 0.75rem;font-size:10.5px}
-  .top-bar-wa{display:none !important}
   nav:not(.admin-nav):not(.mobile-bottom-action-bar){padding:0 0.6rem}
   .nav-logo{font-size:14.5px;max-width:130px;letter-spacing:-0.2px}
   .nav-right-actions{gap:4px}
